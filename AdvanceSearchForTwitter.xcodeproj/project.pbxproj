@@ -58,13 +58,37 @@
 			children = (
 				B62806242338EA19009BBDD7 /* AppDelegate.swift */,
 				B62806262338EA19009BBDD7 /* SceneDelegate.swift */,
-				B62806282338EA19009BBDD7 /* ViewController.swift */,
-				B628062A2338EA19009BBDD7 /* Main.storyboard */,
-				B628062D2338EA1A009BBDD7 /* Assets.xcassets */,
-				B628062F2338EA1A009BBDD7 /* LaunchScreen.storyboard */,
+				B62806382338ECD5009BBDD7 /* Model */,
+				B628063A2338ECE5009BBDD7 /* Controllers */,
+				B62806392338ECDD009BBDD7 /* View */,
 				B62806322338EA1A009BBDD7 /* Info.plist */,
 			);
 			path = AdvanceSearchForTwitter;
+			sourceTree = "<group>";
+		};
+		B62806382338ECD5009BBDD7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B62806392338ECDD009BBDD7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B628062A2338EA19009BBDD7 /* Main.storyboard */,
+				B628062D2338EA1A009BBDD7 /* Assets.xcassets */,
+				B628062F2338EA1A009BBDD7 /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B628063A2338ECE5009BBDD7 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B62806282338EA19009BBDD7 /* ViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
