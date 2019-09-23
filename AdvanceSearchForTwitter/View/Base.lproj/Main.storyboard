@@ -7,10 +7,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Sign In View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="AdvanceSearchForTwitter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="SignInViewController" customModule="AdvanceSearchForTwitter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -79,11 +79,28 @@
                     <navigationItem key="navigationItem" id="RfG-eC-EYO"/>
                     <connections>
                         <outlet property="signInButton" destination="z9n-IV-zKj" id="kpl-xe-gpc"/>
+                        <segue destination="JpX-ks-Ngo" kind="show" identifier="homePage" id="M8Z-tK-vSI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1071.2" y="112.89355322338831"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="hZ7-rb-gZg">
+            <objects>
+                <viewController id="JpX-ks-Ngo" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="CzI-1y-N5O">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="rfQ-RG-f8h"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="7Rt-Nk-LV8"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hEL-sc-ZGq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1860" y="113"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ts4-XK-ZGh">

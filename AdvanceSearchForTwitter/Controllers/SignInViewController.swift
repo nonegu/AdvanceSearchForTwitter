@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import OAuthSwift
 
-class ViewController: UIViewController {
+class SignInViewController: UIViewController {
     
     // MARK: Outlets
     @IBOutlet weak var signInButton: UIButton!
@@ -27,8 +28,16 @@ class ViewController: UIViewController {
     
     // MARK: Actions
     @IBAction func signInPressed(_ sender: UIButton) {
+        TwitterAPI.authorize(viewController: self, completion: handleAuthorizeResponse(success:error:))
     }
     
+    @objc func handleAuthorizeResponse(success: Bool, error: Error?) {
+        if success {
+            performSegue(withIdentifier: "homePage", sender: self)
+        } else {
+            print(error!)
+        }
+    }
 
 }
 
