@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xWC-nB-a8G">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -9,16 +10,102 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="AdvanceSearchForTwitter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z9n-IV-zKj">
+                                <rect key="frame" x="50" y="313.5" width="275" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="g0J-Ql-k16"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
+                                <color key="tintColor" red="0.4431372549" green="0.33725490200000002" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Sign in via Twitter">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="signInPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Wgc-0g-hbo"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="twitter-login-icon" translatesAutoresizingMaskIntoConstraints="NO" id="yzk-k9-PbK">
+                                <rect key="frame" x="58" y="315.5" width="36" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="36" id="0dq-kQ-dtw"/>
+                                    <constraint firstAttribute="height" constant="36" id="yPt-ZJ-GZx"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Advance Search for Twitter" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wey-qC-1bO">
+                                <rect key="frame" x="97" y="248.5" width="181" height="17"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="white-twitter-logo" translatesAutoresizingMaskIntoConstraints="NO" id="owp-xJ-FQu">
+                                <rect key="frame" x="137.5" y="140.5" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="Tm8-Zj-GOI"/>
+                                    <constraint firstAttribute="height" constant="100" id="sMb-yk-4KG"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign in via Twitter is required to make any search on Twitter API. You will be redirected to Twitter to login." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7M5-el-dGE">
+                                <rect key="frame" x="57.5" y="361.5" width="260" height="42"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="260" id="L45-PE-yXz"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.44313725490196076" green="0.33725490196078434" blue="0.58823529411764708" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="owp-xJ-FQu" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="9Qj-pU-tvN"/>
+                            <constraint firstItem="z9n-IV-zKj" firstAttribute="top" secondItem="wey-qC-1bO" secondAttribute="bottom" constant="48" id="BQ0-TY-R0Z"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="z9n-IV-zKj" secondAttribute="trailing" constant="50" id="SY4-BJ-t69"/>
+                            <constraint firstItem="7M5-el-dGE" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="cHS-ze-Iem"/>
+                            <constraint firstItem="yzk-k9-PbK" firstAttribute="leading" secondItem="z9n-IV-zKj" secondAttribute="leading" constant="8" id="dFh-TD-j11"/>
+                            <constraint firstItem="z9n-IV-zKj" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="epb-oa-RZ3"/>
+                            <constraint firstItem="z9n-IV-zKj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="kXr-Wd-E1n"/>
+                            <constraint firstItem="wey-qC-1bO" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="lXN-EF-nrG"/>
+                            <constraint firstItem="wey-qC-1bO" firstAttribute="top" secondItem="owp-xJ-FQu" secondAttribute="bottom" constant="8" id="tpf-v5-c8v"/>
+                            <constraint firstItem="7M5-el-dGE" firstAttribute="top" secondItem="z9n-IV-zKj" secondAttribute="bottom" constant="8" id="xs1-Zy-tbS"/>
+                            <constraint firstItem="z9n-IV-zKj" firstAttribute="centerY" secondItem="yzk-k9-PbK" secondAttribute="centerY" id="ycr-sZ-iab"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" id="RfG-eC-EYO"/>
+                    <connections>
+                        <outlet property="signInButton" destination="z9n-IV-zKj" id="kpl-xe-gpc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1071.2" y="112.89355322338831"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Ts4-XK-ZGh">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xWC-nB-a8G" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="W95-Th-Fr7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="miL-Z8-9Ng"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="z9Y-zk-sxu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="132" y="112.89355322338831"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="twitter-login-icon" width="26.5" height="26.5"/>
+        <image name="white-twitter-logo" width="170.5" height="170.5"/>
+    </resources>
 </document>
