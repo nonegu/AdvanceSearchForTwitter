@@ -21,10 +21,8 @@ class TwitterAPI {
     static let callbackURL = URL(string: "AdvanceSearchForTwitter://oauth-callback/twitter")!
     
     class func authorize(viewController: UIViewController, completion: @escaping (Bool, Error?) -> Void) {
-        TwitterAPI.oauthswift.authorizeURLHandler = SafariURLHandler(viewController: viewController, oauthSwift: TwitterAPI.oauthswift)
-        #warning("Redirecting with callbackURL does not work atm")
-        _ = oauthswift.authorize(withCallbackURL: callbackURL) { (result) in
-            print("success")
+        oauthswift.authorizeURLHandler = SafariURLHandler(viewController: viewController, oauthSwift: TwitterAPI.oauthswift)
+        oauthswift.authorize(withCallbackURL: callbackURL) { (result) in
             switch result {
             case .success( (_, _, _)):
                 completion(true, nil)
