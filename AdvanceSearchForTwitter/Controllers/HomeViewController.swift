@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class HomeViewController: UIViewController {
     
@@ -51,6 +52,9 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         cell.userNickname.text = tweets[indexPath.row].user.name
         cell.username.text = "@\(tweets[indexPath.row].user.screenName)"
         cell.tweetText.text = tweets[indexPath.row].fullText
+        let url = tweets[indexPath.row].user.profileImageUrlHttps
+        cell.profileImage.kf.indicatorType = .activity
+        cell.profileImage.kf.setImage(with: URL(string: url))
         cell.layer.cornerRadius = 5
         return cell
     }
