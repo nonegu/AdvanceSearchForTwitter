@@ -158,6 +158,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="6L7-gf-1XA" secondAttribute="trailing" constant="16" id="43S-S4-L0e"/>
                                                 <constraint firstItem="jFc-eo-2C3" firstAttribute="leading" secondItem="Bfo-ud-hfR" secondAttribute="trailing" constant="8" id="JYe-sy-fRu"/>
                                                 <constraint firstItem="Bfo-ud-hfR" firstAttribute="top" secondItem="Pss-On-BLp" secondAttribute="top" constant="16" id="LAL-x1-flq"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="QSS-OY-9eo" secondAttribute="trailing" constant="20" symbolic="YES" id="QL8-38-E8Z"/>
                                                 <constraint firstItem="QSS-OY-9eo" firstAttribute="leading" secondItem="jFc-eo-2C3" secondAttribute="trailing" constant="4" id="Y8u-dt-Oej"/>
                                                 <constraint firstItem="jFc-eo-2C3" firstAttribute="top" secondItem="Bfo-ud-hfR" secondAttribute="top" id="aAy-QI-f98"/>
                                                 <constraint firstItem="QSS-OY-9eo" firstAttribute="bottom" secondItem="jFc-eo-2C3" secondAttribute="bottom" id="cIr-2x-CWX"/>
@@ -166,6 +167,7 @@
                                                 <constraint firstItem="6L7-gf-1XA" firstAttribute="leading" secondItem="Bfo-ud-hfR" secondAttribute="trailing" constant="8" id="yq2-NL-Nrk"/>
                                             </constraints>
                                         </collectionViewCellContentView>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <size key="customSize" width="375" height="162"/>
                                         <connections>
                                             <outlet property="profileImage" destination="Bfo-ud-hfR" id="vAP-lq-9Xx"/>
@@ -175,6 +177,10 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="JpX-ks-Ngo" id="eqc-23-KF8"/>
+                                    <outlet property="delegate" destination="JpX-ks-Ngo" id="CR4-7d-Ora"/>
+                                </connections>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>

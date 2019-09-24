@@ -32,16 +32,20 @@ class TwitterAPI {
         }
     }
     
-    class func get() {
-        oauthswift.client.get(URL(string: "https://api.twitter.com/1.1/search/tweets.json?q=from%3Atwitterdev&result_type=mixed&count=2")!, completionHandler: { (result) in
+    class func get(completion: @escaping ([Tweet], Error?) -> Void) {
+        oauthswift.client.get(URL(string: "https://api.twitter.com/1.1/search/tweets.json?q=from%3Atwitterdev&result_type=mixed&count=5&tweet_mode=extended")!, completionHandler: { (result) in
             switch result {
             case .success(let response):
                 let decoder = JSONDecoder()
                 do {
                     let decodedResponse = try decoder.decode(SearchResponses.self, from: response.data)
-                    print(decodedResponse)
+                    DispatchQueue.main.async {
+                        completion(decodedResponse.statuses, nil)
+                    }
                 } catch {
-                    print(error)
+                    DispatchQueue.main.async {
+                        completion([], error)
+                    }
                 }
             case .failure(let error):
                 print(error)
