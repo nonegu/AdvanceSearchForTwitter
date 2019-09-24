@@ -31,4 +31,21 @@ class TwitterAPI {
             }
         }
     }
+    
+    class func get() {
+        oauthswift.client.get(URL(string: "https://api.twitter.com/1.1/search/tweets.json?q=from%3Atwitterdev&result_type=mixed&count=2")!, completionHandler: { (result) in
+            switch result {
+            case .success(let response):
+                let decoder = JSONDecoder()
+                do {
+                    let decodedResponse = try decoder.decode(SearchResponses.self, from: response.data)
+                    print(decodedResponse)
+                } catch {
+                    print(error)
+                }
+            case .failure(let error):
+                print(error)
+            }
+        })
+    }
 }

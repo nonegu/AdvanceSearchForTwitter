@@ -15,6 +15,9 @@
 		B62806312338EA1A009BBDD7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B628062F2338EA1A009BBDD7 /* LaunchScreen.storyboard */; };
 		B628063C2338ED24009BBDD7 /* TwitterAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B628063B2338ED24009BBDD7 /* TwitterAPI.swift */; };
 		B628063E2338EE2E009BBDD7 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B628063D2338EE2E009BBDD7 /* HomeViewController.swift */; };
+		B643215A233A2F1900C76C5E /* SearchResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6432159233A2F1900C76C5E /* SearchResponses.swift */; };
+		B643215C233A34CA00C76C5E /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B643215B233A34CA00C76C5E /* UserResponse.swift */; };
+		B643215E233A37F400C76C5E /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B643215D233A37F400C76C5E /* Tweet.swift */; };
 		B696DC33233A1F8600FAF8D4 /* TwitterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B696DC32233A1F8600FAF8D4 /* TwitterCell.swift */; };
 		F2DB6F8704699137082865DB /* Pods_AdvanceSearchForTwitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8661AF4C79B5A13CA4650EAC /* Pods_AdvanceSearchForTwitter.framework */; };
 /* End PBXBuildFile section */
@@ -33,6 +36,9 @@
 		B62806322338EA1A009BBDD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B628063B2338ED24009BBDD7 /* TwitterAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterAPI.swift; sourceTree = "<group>"; };
 		B628063D2338EE2E009BBDD7 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		B6432159233A2F1900C76C5E /* SearchResponses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResponses.swift; sourceTree = "<group>"; };
+		B643215B233A34CA00C76C5E /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
+		B643215D233A37F400C76C5E /* Tweet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
 		B696DC32233A1F8600FAF8D4 /* TwitterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -90,7 +96,8 @@
 		B62806382338ECD5009BBDD7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				B628063B2338ED24009BBDD7 /* TwitterAPI.swift */,
+				B6432157233A2AC300C76C5E /* TwitterAPI */,
+				B6432158233A2B6700C76C5E /* TwitterResponses */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -113,6 +120,24 @@
 				B628063D2338EE2E009BBDD7 /* HomeViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		B6432157233A2AC300C76C5E /* TwitterAPI */ = {
+			isa = PBXGroup;
+			children = (
+				B628063B2338ED24009BBDD7 /* TwitterAPI.swift */,
+			);
+			path = TwitterAPI;
+			sourceTree = "<group>";
+		};
+		B6432158233A2B6700C76C5E /* TwitterResponses */ = {
+			isa = PBXGroup;
+			children = (
+				B6432159233A2F1900C76C5E /* SearchResponses.swift */,
+				B643215B233A34CA00C76C5E /* UserResponse.swift */,
+				B643215D233A37F400C76C5E /* Tweet.swift */,
+			);
+			path = TwitterResponses;
 			sourceTree = "<group>";
 		};
 		C7557D482C125026D109AC18 /* Pods */ = {
@@ -242,6 +267,9 @@
 				B628063E2338EE2E009BBDD7 /* HomeViewController.swift in Sources */,
 				B696DC33233A1F8600FAF8D4 /* TwitterCell.swift in Sources */,
 				B628063C2338ED24009BBDD7 /* TwitterAPI.swift in Sources */,
+				B643215E233A37F400C76C5E /* Tweet.swift in Sources */,
+				B643215C233A34CA00C76C5E /* UserResponse.swift in Sources */,
+				B643215A233A2F1900C76C5E /* SearchResponses.swift in Sources */,
 				B62806292338EA19009BBDD7 /* SignInViewController.swift in Sources */,
 				B62806252338EA19009BBDD7 /* AppDelegate.swift in Sources */,
 				B62806272338EA19009BBDD7 /* SceneDelegate.swift in Sources */,
