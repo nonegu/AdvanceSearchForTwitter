@@ -34,6 +34,15 @@ class SearchViewController: UIViewController {
         super.viewWillAppear(animated)
 
     }
+    
+    @objc func addSearchFieldButtonPressed() {
+        let indexPath = IndexPath(row: (4-searchTypes.count), section: 0)
+        let cell = tableView.cellForRow(at: indexPath) as! SearchCell
+        searchTypes.removeAll { (type) -> Bool in
+            type == cell.searchTypeTextField.text
+        }
+        tableView.reloadData()
+    }
         
 }
 
@@ -46,7 +55,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return 1
+            return (5 - searchTypes.count)
         } else {
             return 1
         }
@@ -60,6 +69,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: ButtonCell.defaultReuseIdentifier, for: indexPath) as! ButtonCell
             cell.searchButton.layer.cornerRadius = 5
+            cell.addSearchFieldButton .addTarget(self, action: #selector(addSearchFieldButtonPressed), for: .touchUpInside)
             cell.addSearchFieldButton.layer.cornerRadius = 17.5
             cell.addSearchFieldButton.layer.borderWidth = 1.5
             cell.addSearchFieldButton.layer.borderColor = UIColor.white.cgColor
