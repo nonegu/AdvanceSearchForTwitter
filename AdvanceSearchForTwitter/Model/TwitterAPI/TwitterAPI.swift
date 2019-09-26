@@ -32,8 +32,8 @@ class TwitterAPI {
         }
     }
     
-    class func get(completion: @escaping ([Tweet], Error?) -> Void) {
-        oauthswift.client.get(URL(string: "https://api.twitter.com/1.1/search/tweets.json?q=from%3Atwitterdev&result_type=mixed&count=5&tweet_mode=extended")!, completionHandler: { (result) in
+    class func get(url: URL, completion: @escaping ([Tweet], Error?) -> Void) {
+        oauthswift.client.get(url, completionHandler: { (result) in
             switch result {
             case .success(let response):
                 let decoder = JSONDecoder()
@@ -41,6 +41,27 @@ class TwitterAPI {
                     let decodedResponse = try decoder.decode(SearchResponses.self, from: response.data)
                     DispatchQueue.main.async {
                         completion(decodedResponse.statuses, nil)
+                    }
+                } catch {
+                    DispatchQueue.main.async {
+                        completion([], error)
+                    }
+                }
+            case .failure(let error):
+                print(error)
+            }
+        })
+    }
+    
+    class func getTimeline(url: URL, completion: @escaping ([Tweet], Error?) -> Void) {
+        oauthswift.client.get(url, completionHandler: { (result) in
+            switch result {
+            case .success(let response):
+                let decoder = JSONDecoder()
+                do {
+                    let decodedResponse = try decoder.decode([Tweet].self, from: response.data)
+                    DispatchQueue.main.async {
+                        completion(decodedResponse, nil)
                     }
                 } catch {
                     DispatchQueue.main.async {

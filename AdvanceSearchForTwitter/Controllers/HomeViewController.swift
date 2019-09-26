@@ -19,7 +19,8 @@ class HomeViewController: UIViewController {
     // MARK: Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        TwitterAPI.get(completion: handleSearchResults(results:error:))
+//        TwitterAPI.get(url: URL(string: "https://api.twitter.com/1.1/search/tweets.json?q=from%3Atwitterdev&result_type=mixed&count=5&tweet_mode=extended")!, completion: handleSearchResults(results:error:))
+        TwitterAPI.getTimeline(url: URL(string: "https://api.twitter.com/1.1/statuses/home_timeline.json?tweet_mode=extended")!, completion: handleSearchResults(results:error:))
     }
     
     override func viewWillAppear(_ animated: Bool) {
