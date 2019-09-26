@@ -19,33 +19,63 @@ class SearchViewController: UIViewController {
     }()
     
     // MARK: Outlets
-    @IBOutlet weak var searchTypeField: UITextField!
-    @IBOutlet weak var searchKeywordTextField: UITextField!
-    @IBOutlet weak var addSearchFieldsButton: UIButton!
-    @IBOutlet weak var searchButton: UIButton!
+    @IBOutlet weak var tableView: UITableView!
     
     // MARK: Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         searchTypePickerView.delegate = self
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.separatorStyle = .none
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        searchTypeField.inputView = searchTypePickerView
-        setSearchButtonUI()
-        addSearchFieldsButton.layer.cornerRadius = 18
-        addSearchFieldsButton.layer.borderWidth = 2
-        addSearchFieldsButton.layer.borderColor = UIColor.white.cgColor
+
+    }
+        
+}
+
+// MARK: UITableView Delegate Methods
+extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
     }
     
-    fileprivate func setSearchButtonUI() {
-        searchButton.layer.cornerRadius = 5
-        searchButton.layer.shadowColor = UIColor.black.cgColor
-        searchButton.layer.shadowOffset = CGSize(width: 0, height: 1.5)
-        searchButton.layer.shadowRadius = 0
-        searchButton.layer.shadowOpacity = 1.0
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return 1
+        } else {
+            return 1
+        }
     }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: SearchCell.defaultReuseIdentifier, for: indexPath) as! SearchCell
+            cell.searchTypeTextField.inputView = searchTypePickerView
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: ButtonCell.defaultReuseIdentifier, for: indexPath) as! ButtonCell
+            cell.searchButton.layer.cornerRadius = 5
+            cell.addSearchFieldButton.layer.cornerRadius = 17.5
+            cell.addSearchFieldButton.layer.borderWidth = 1.5
+            cell.addSearchFieldButton.layer.borderColor = UIColor.white.cgColor
+            return cell
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            return 90
+        } else {
+            return 100
+        }
+    }
+
+    
     
 }
 
@@ -64,7 +94,9 @@ extension SearchViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        searchTypeField.text = searchTypes[row]
+        let indexPath = IndexPath(row: (4-searchTypes.count), section: 0)
+        let cell = tableView.cellForRow(at: indexPath) as! SearchCell
+        cell.searchTypeTextField.text = searchTypes[row]
     }
     
 }

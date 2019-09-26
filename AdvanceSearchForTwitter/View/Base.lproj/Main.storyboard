@@ -95,78 +95,122 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="from" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YfA-6G-xju">
-                                <rect key="frame" x="50" y="274.5" width="275" height="34"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="@enderguzel" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Agq-UB-wNa">
-                                <rect key="frame" x="50" y="316.5" width="275" height="34"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Advance Search for Twitter" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GZk-QH-zRt">
-                                <rect key="frame" x="97" y="209.5" width="181" height="17"/>
+                                <rect key="frame" x="97" y="210" width="181" height="17"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="white-twitter-logo" translatesAutoresizingMaskIntoConstraints="NO" id="WsU-YH-CeZ">
-                                <rect key="frame" x="137.5" y="101.5" width="100" height="100"/>
+                                <rect key="frame" x="137.5" y="102" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="SFi-87-7xw"/>
                                     <constraint firstAttribute="width" constant="100" id="xiW-q3-iAd"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v2K-QE-nM1">
-                                <rect key="frame" x="169.5" y="374.5" width="36" height="36"/>
-                                <color key="backgroundColor" red="0.37254901960784315" green="0.25882352941176467" blue="0.58823529411764708" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="36" id="A5n-5F-bnv"/>
-                                    <constraint firstAttribute="width" constant="36" id="OW0-lr-u0h"/>
-                                </constraints>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" image="plus" catalog="system"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Blv-I2-IgR">
-                                <rect key="frame" x="75" y="434.5" width="225" height="40"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="8CG-yV-vqR"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
-                                <state key="normal" title="Search">
-                                    <color key="titleColor" red="0.4431372549" green="0.33725490200000002" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3Lu-51-wFf">
+                                <rect key="frame" x="0.0" y="251" width="375" height="367"/>
+                                <color key="backgroundColor" red="0.4431372549" green="0.33725490200000002" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SearchCell" rowHeight="100" id="TEQ-rZ-wz5" customClass="SearchCell" customModule="AdvanceSearchForTwitter" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TEQ-rZ-wz5" id="PDs-AY-lgF">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="F2l-Px-Zk8" userLabel="SearchType">
+                                                    <rect key="frame" x="65" y="11" width="245" height="34"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jls-N0-sCh" userLabel="SearchKeyword">
+                                                    <rect key="frame" x="65" y="53" width="245" height="34"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.4431372549" green="0.33725490200000002" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="jls-N0-sCh" secondAttribute="trailing" constant="50" id="7xx-PA-aWH"/>
+                                                <constraint firstItem="jls-N0-sCh" firstAttribute="top" secondItem="F2l-Px-Zk8" secondAttribute="bottom" constant="8" id="Of2-Vq-WlT"/>
+                                                <constraint firstItem="jls-N0-sCh" firstAttribute="leading" secondItem="PDs-AY-lgF" secondAttribute="leadingMargin" constant="50" id="Stt-OF-MCM"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="F2l-Px-Zk8" secondAttribute="trailing" constant="50" id="g3g-hy-hw5"/>
+                                                <constraint firstItem="F2l-Px-Zk8" firstAttribute="top" secondItem="PDs-AY-lgF" secondAttribute="topMargin" id="rh2-ND-h8L"/>
+                                                <constraint firstItem="F2l-Px-Zk8" firstAttribute="leading" secondItem="PDs-AY-lgF" secondAttribute="leadingMargin" constant="50" id="xmk-Ph-0fi"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.4431372549" green="0.33725490200000002" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <outlet property="searchKeywordTextField" destination="jls-N0-sCh" id="diy-1P-kJR"/>
+                                            <outlet property="searchTypeTextField" destination="F2l-Px-Zk8" id="odf-sX-SW9"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFit" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ButtonCell" rowHeight="100" id="Mq0-TT-H69" customClass="ButtonCell" customModule="AdvanceSearchForTwitter" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="128" width="375" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Mq0-TT-H69" id="r5l-Si-nHe">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4QO-0f-eJU">
+                                                    <rect key="frame" x="169.5" y="11" width="36" height="36"/>
+                                                    <color key="backgroundColor" red="0.37254901959999998" green="0.25882352939999997" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="36" id="Vlw-yB-Ha1"/>
+                                                        <constraint firstAttribute="height" constant="36" id="ZxD-xZ-zdU"/>
+                                                    </constraints>
+                                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <state key="normal" image="plus" catalog="system">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RpH-Ip-EXA">
+                                                    <rect key="frame" x="75" y="55" width="225" height="40"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="6Dc-MT-tRB"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
+                                                    <color key="tintColor" red="0.4431372549" green="0.33725490200000002" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <state key="normal" title="Search"/>
+                                                </button>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.4431372549" green="0.33725490200000002" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstItem="4QO-0f-eJU" firstAttribute="top" secondItem="r5l-Si-nHe" secondAttribute="topMargin" id="D0W-Sf-Mdc"/>
+                                                <constraint firstItem="4QO-0f-eJU" firstAttribute="centerX" secondItem="r5l-Si-nHe" secondAttribute="centerX" id="GO9-0j-3Bt"/>
+                                                <constraint firstItem="RpH-Ip-EXA" firstAttribute="leading" secondItem="r5l-Si-nHe" secondAttribute="leading" constant="75" id="HKu-ao-z0y"/>
+                                                <constraint firstItem="4QO-0f-eJU" firstAttribute="centerX" secondItem="RpH-Ip-EXA" secondAttribute="centerX" id="a8X-3p-Hk5"/>
+                                                <constraint firstItem="RpH-Ip-EXA" firstAttribute="top" secondItem="4QO-0f-eJU" secondAttribute="bottom" constant="8" id="dSZ-5N-c1w"/>
+                                                <constraint firstItem="4QO-0f-eJU" firstAttribute="centerX" secondItem="r5l-Si-nHe" secondAttribute="centerX" id="i2v-Wc-rpW"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.4431372549" green="0.33725490200000002" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <outlet property="addSearchFieldButton" destination="4QO-0f-eJU" id="6K4-7l-NIA"/>
+                                            <outlet property="searchButton" destination="RpH-Ip-EXA" id="nHi-WM-4mG"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.4431372549" green="0.33725490200000002" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="Agq-UB-wNa" firstAttribute="centerY" secondItem="tXb-nb-SGw" secondAttribute="centerY" id="1CS-P8-TgT"/>
                             <constraint firstItem="WsU-YH-CeZ" firstAttribute="centerX" secondItem="tXb-nb-SGw" secondAttribute="centerX" id="2yH-GX-48s"/>
-                            <constraint firstItem="Blv-I2-IgR" firstAttribute="top" secondItem="v2K-QE-nM1" secondAttribute="bottom" constant="24" id="G6O-8w-OY6"/>
-                            <constraint firstItem="v2K-QE-nM1" firstAttribute="centerX" secondItem="tXb-nb-SGw" secondAttribute="centerX" id="HoG-F5-gDZ"/>
-                            <constraint firstItem="Blv-I2-IgR" firstAttribute="leading" secondItem="qyO-dT-Gjw" secondAttribute="leading" constant="75" id="Y0N-jc-wci"/>
-                            <constraint firstItem="qyO-dT-Gjw" firstAttribute="trailing" secondItem="Agq-UB-wNa" secondAttribute="trailing" constant="50" id="bGM-uc-wNq"/>
+                            <constraint firstItem="3Lu-51-wFf" firstAttribute="leading" secondItem="qyO-dT-Gjw" secondAttribute="leading" id="3Q9-73-A6x"/>
+                            <constraint firstItem="WsU-YH-CeZ" firstAttribute="top" secondItem="qyO-dT-Gjw" secondAttribute="top" constant="58" id="AO7-bf-4Wx"/>
+                            <constraint firstItem="3Lu-51-wFf" firstAttribute="trailing" secondItem="qyO-dT-Gjw" secondAttribute="trailing" id="MY6-WX-UKp"/>
+                            <constraint firstItem="3Lu-51-wFf" firstAttribute="top" secondItem="GZk-QH-zRt" secondAttribute="bottom" constant="24" id="Sux-gV-2w6"/>
+                            <constraint firstItem="3Lu-51-wFf" firstAttribute="bottom" secondItem="qyO-dT-Gjw" secondAttribute="bottom" id="iEj-De-8Fx"/>
                             <constraint firstItem="GZk-QH-zRt" firstAttribute="centerX" secondItem="tXb-nb-SGw" secondAttribute="centerX" id="jdx-YQ-ZyJ"/>
-                            <constraint firstItem="YfA-6G-xju" firstAttribute="top" secondItem="GZk-QH-zRt" secondAttribute="bottom" constant="48" id="l0T-RJ-fTg"/>
-                            <constraint firstItem="YfA-6G-xju" firstAttribute="leading" secondItem="qyO-dT-Gjw" secondAttribute="leading" constant="50" id="ljP-fz-CzH"/>
-                            <constraint firstItem="Agq-UB-wNa" firstAttribute="top" secondItem="YfA-6G-xju" secondAttribute="bottom" constant="8" id="mbu-q4-WG2"/>
-                            <constraint firstItem="v2K-QE-nM1" firstAttribute="top" secondItem="Agq-UB-wNa" secondAttribute="bottom" constant="24" id="rTo-5H-ZEe"/>
                             <constraint firstItem="GZk-QH-zRt" firstAttribute="top" secondItem="WsU-YH-CeZ" secondAttribute="bottom" constant="8" id="suS-FH-7cU"/>
-                            <constraint firstItem="qyO-dT-Gjw" firstAttribute="trailing" secondItem="YfA-6G-xju" secondAttribute="trailing" constant="50" id="tQl-Qa-cLp"/>
-                            <constraint firstItem="Agq-UB-wNa" firstAttribute="centerX" secondItem="tXb-nb-SGw" secondAttribute="centerX" id="tjY-n3-937"/>
-                            <constraint firstItem="qyO-dT-Gjw" firstAttribute="trailing" secondItem="Blv-I2-IgR" secondAttribute="trailing" constant="75" id="zD6-TH-baX"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qyO-dT-Gjw"/>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="search" id="nGH-YP-LYO"/>
                     <connections>
-                        <outlet property="addSearchFieldsButton" destination="v2K-QE-nM1" id="lWy-kC-nki"/>
-                        <outlet property="searchButton" destination="Blv-I2-IgR" id="nJg-z1-fmU"/>
-                        <outlet property="searchKeywordTextField" destination="Agq-UB-wNa" id="CTe-n9-77Z"/>
-                        <outlet property="searchTypeField" destination="YfA-6G-xju" id="qx8-B6-3TS"/>
+                        <outlet property="tableView" destination="3Lu-51-wFf" id="WqI-Uw-wKe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k8s-Lk-o5s" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
