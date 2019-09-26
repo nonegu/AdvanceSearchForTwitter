@@ -38,6 +38,8 @@ class SearchViewController: UIViewController {
     @objc func addSearchFieldButtonPressed() {
         let indexPath = IndexPath(row: (4-searchTypes.count), section: 0)
         let cell = tableView.cellForRow(at: indexPath) as! SearchCell
+        cell.searchTypeTextField.isUserInteractionEnabled = false
+        cell.searchTypeTextField.backgroundColor = UIColor.lightGray
         searchTypes.removeAll { (type) -> Bool in
             type == cell.searchTypeTextField.text
         }
