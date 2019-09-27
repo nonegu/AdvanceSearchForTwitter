@@ -17,6 +17,7 @@ class SearchViewController: UIViewController {
         pickerView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         return pickerView
     }()
+    var searchParameters = [String: String]()
     
     // MARK: Outlets
     @IBOutlet weak var tableView: UITableView!
@@ -45,6 +46,23 @@ class SearchViewController: UIViewController {
         }
         tableView.reloadData()
     }
+    
+    @objc func searchButtonPressed() {
+        for cellNum in 0..<(4 - searchTypes.count) {
+            let indexPath = IndexPath(row: cellNum, section: 0)
+            let cell = tableView.cellForRow(at: indexPath) as! SearchCell
+            searchParameters[cell.searchTypeTextField.text!] = cell.searchKeywordTextField.text
+        }
+        TwitterAPI.get(searchParameters: searchParameters, completion: handleSearchResults(results:error:))
+    }
+    
+    func handleSearchResults(results: [Tweet], error: Error?) {
+        guard error == nil else {
+            print(error!)
+            return
+        }
+        print(results)
+    }
         
 }
 
@@ -71,6 +89,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: ButtonCell.defaultReuseIdentifier, for: indexPath) as! ButtonCell
             cell.searchButton.layer.cornerRadius = 5
+            cell.searchButton.addTarget(self, action: #selector(searchButtonPressed), for: .touchUpInside)
             cell.addSearchFieldButton .addTarget(self, action: #selector(addSearchFieldButtonPressed), for: .touchUpInside)
             cell.addSearchFieldButton.layer.cornerRadius = 17.5
             cell.addSearchFieldButton.layer.borderWidth = 1.5
