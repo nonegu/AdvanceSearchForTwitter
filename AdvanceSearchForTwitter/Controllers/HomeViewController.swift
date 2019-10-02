@@ -19,6 +19,7 @@ class HomeViewController: UIViewController {
     // MARK: Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        collectionView.register(UINib(nibName: TwitterCell.defaultReuseIdentifier, bundle: nil), forCellWithReuseIdentifier: TwitterCell.defaultReuseIdentifier)
         collectionView.delegate = self
         collectionView.dataSource = self
 //        TwitterAPI.get(url: URL(string: "https://api.twitter.com/1.1/search/tweets.json?q=from%3Atwitterdev&result_type=mixed&count=5&tweet_mode=extended")!, completion: handleSearchResults(results:error:))
