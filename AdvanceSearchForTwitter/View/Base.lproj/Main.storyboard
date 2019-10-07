@@ -316,18 +316,49 @@
         <!--Saved Tweets-->
         <scene sceneID="kNv-7c-H7B">
             <objects>
-                <viewController id="giw-sK-jOn" sceneMemberID="viewController">
+                <viewController id="giw-sK-jOn" customClass="SavedTweetsViewController" customModule="AdvanceSearchForTwitter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xrp-tR-F9C">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Z2N-on-imu">
+                                <rect key="frame" x="0.0" y="44" width="375" height="574"/>
+                                <color key="backgroundColor" red="0.4431372549" green="0.33725490200000002" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="IoL-P8-ayN">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DummyCell3" id="X0Q-UW-E1A">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="w34-Qo-RPs">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="m2e-n3-aoV" firstAttribute="trailing" secondItem="Z2N-on-imu" secondAttribute="trailing" id="8hr-k2-bHd"/>
+                            <constraint firstItem="Z2N-on-imu" firstAttribute="bottom" secondItem="m2e-n3-aoV" secondAttribute="bottom" id="Bv3-sf-wbE"/>
+                            <constraint firstItem="Z2N-on-imu" firstAttribute="leading" secondItem="m2e-n3-aoV" secondAttribute="leading" id="JK5-Zh-Q4A"/>
+                            <constraint firstItem="Z2N-on-imu" firstAttribute="top" secondItem="m2e-n3-aoV" secondAttribute="top" id="jw6-JA-5jw"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="m2e-n3-aoV"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Saved Tweets" image="book.fill" catalog="system" id="loL-aK-sBT"/>
+                    <connections>
+                        <outlet property="collectionView" destination="Z2N-on-imu" id="7g8-0N-mHh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="umW-SU-iVz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2798" y="845"/>
+            <point key="canvasLocation" x="2797.5999999999999" y="844.22788605697156"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ts4-XK-ZGh">
