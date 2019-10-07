@@ -40,8 +40,6 @@ extension SavedTweetsViewController: UICollectionViewDelegate, UICollectionViewD
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TwitterCell.defaultReuseIdentifier, for: indexPath) as! TwitterCell
         cell.layer.cornerRadius = 5
         if tweets.count == 0 {
-            cell.userNickname.text = ""
-            cell.username.text = ""
             cell.tweetText.text = "No tweets saved yet!"
             cell.tweetText.textAlignment = .center
         } else {
