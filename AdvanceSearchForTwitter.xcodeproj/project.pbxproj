@@ -23,6 +23,7 @@
 		B6B5DAC4233CC85400CF3B58 /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B5DAC3233CC85400CF3B58 /* ButtonCell.swift */; };
 		B6F7E33E2344AC640066DA96 /* TwitterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F7E33C2344AC640066DA96 /* TwitterCell.swift */; };
 		B6F7E33F2344AC640066DA96 /* TwitterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6F7E33D2344AC640066DA96 /* TwitterCell.xib */; };
+		B6F7E3442344C60D0066DA96 /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F7E3432344C60D0066DA96 /* SearchResultsViewController.swift */; };
 		F2DB6F8704699137082865DB /* Pods_AdvanceSearchForTwitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8661AF4C79B5A13CA4650EAC /* Pods_AdvanceSearchForTwitter.framework */; };
 /* End PBXBuildFile section */
 
@@ -48,6 +49,7 @@
 		B6B5DAC3233CC85400CF3B58 /* ButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
 		B6F7E33C2344AC640066DA96 /* TwitterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterCell.swift; sourceTree = "<group>"; };
 		B6F7E33D2344AC640066DA96 /* TwitterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TwitterCell.xib; sourceTree = "<group>"; };
+		B6F7E3432344C60D0066DA96 /* SearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +129,7 @@
 				B62806282338EA19009BBDD7 /* SignInViewController.swift */,
 				B628063D2338EE2E009BBDD7 /* HomeViewController.swift */,
 				B643215F233B6A7000C76C5E /* SearchViewController.swift */,
+				B6F7E3432344C60D0066DA96 /* SearchResultsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -286,6 +289,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6432160233B6A7000C76C5E /* SearchViewController.swift in Sources */,
+				B6F7E3442344C60D0066DA96 /* SearchResultsViewController.swift in Sources */,
 				B6B5DAC2233CBBF800CF3B58 /* SearchCell.swift in Sources */,
 				B628063E2338EE2E009BBDD7 /* HomeViewController.swift in Sources */,
 				B628063C2338ED24009BBDD7 /* TwitterAPI.swift in Sources */,

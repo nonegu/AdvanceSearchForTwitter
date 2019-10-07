@@ -211,11 +211,59 @@
                     <tabBarItem key="tabBarItem" systemItem="search" id="nGH-YP-LYO"/>
                     <connections>
                         <outlet property="tableView" destination="3Lu-51-wFf" id="WqI-Uw-wKe"/>
+                        <segue destination="Iwl-jg-dLa" kind="show" identifier="showResults" id="c3H-P0-e0U"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k8s-Lk-o5s" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2797.5999999999999" y="-553.67316341829087"/>
+        </scene>
+        <!--Search Results View Controller-->
+        <scene sceneID="qSl-ct-uiv">
+            <objects>
+                <viewController id="Iwl-jg-dLa" customClass="SearchResultsViewController" customModule="AdvanceSearchForTwitter" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7Gt-R5-2II">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="V4V-vq-uLy">
+                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                                <color key="backgroundColor" red="0.4431372549" green="0.33725490200000002" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Xym-Vf-fpA">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DummyCell2" id="3UM-pE-qs2">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="hGs-CL-2lH">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="V4V-vq-uLy" firstAttribute="top" secondItem="j9G-f4-saa" secondAttribute="top" id="c8W-hE-izK"/>
+                            <constraint firstItem="V4V-vq-uLy" firstAttribute="bottom" secondItem="j9G-f4-saa" secondAttribute="bottom" id="mub-df-zXo"/>
+                            <constraint firstItem="V4V-vq-uLy" firstAttribute="trailing" secondItem="j9G-f4-saa" secondAttribute="trailing" id="tbS-YG-RvI"/>
+                            <constraint firstItem="V4V-vq-uLy" firstAttribute="leading" secondItem="j9G-f4-saa" secondAttribute="leading" id="yfU-nn-IfJ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="j9G-f4-saa"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="IlF-SP-Dd2"/>
+                    <connections>
+                        <outlet property="collectionView" destination="V4V-vq-uLy" id="fki-xm-hKO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qoE-fp-9Z5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3540" y="-554.57271364317842"/>
         </scene>
         <!--Home-->
         <scene sceneID="hZ7-rb-gZg">

@@ -18,6 +18,7 @@ class SearchViewController: UIViewController {
         return pickerView
     }()
     var searchParameters = [String: String]()
+    var searchResults = [Tweet]()
     
     // MARK: Outlets
     @IBOutlet weak var tableView: UITableView!
@@ -62,6 +63,15 @@ class SearchViewController: UIViewController {
             return
         }
         print(results)
+        searchResults = results
+        performSegue(withIdentifier: "showResults", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showResults" {
+            let searchResultsVC = segue.destination as! SearchResultsViewController
+            searchResultsVC.tweets = searchResults
+        }
     }
         
 }
