@@ -87,11 +87,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            if searchTypes.count > 0 {
-                return (5 - searchTypes.count)
-            } else {
-                return 4
-            }
+            return searchTypes.count > 0 ? (5 - searchTypes.count) : 4
         } else {
             return 1
         }
