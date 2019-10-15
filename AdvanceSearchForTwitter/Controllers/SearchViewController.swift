@@ -38,27 +38,23 @@ class SearchViewController: UIViewController {
     }
     
     @objc func addSearchFieldButtonPressed() {
-        let indexPath = IndexPath(row: (4-searchTypes.count), section: 0)
-        let cell = tableView.cellForRow(at: indexPath) as! SearchCell
-        cell.searchTypeTextField.isUserInteractionEnabled = false
-        cell.searchTypeTextField.backgroundColor = UIColor.lightGray
-        searchTypes.removeAll { (type) -> Bool in
-            type == cell.searchTypeTextField.text
+        if searchTypes.count > 0 {
+            let indexPath = IndexPath(row: (4-searchTypes.count), section: 0)
+            let cell = tableView.cellForRow(at: indexPath) as! SearchCell
+            cell.searchTypeTextField.isUserInteractionEnabled = false
+            cell.searchTypeTextField.backgroundColor = UIColor.lightGray
+            searchTypes.removeAll { (type) -> Bool in
+                type == cell.searchTypeTextField.text
+            }
+            tableView.reloadData()
         }
-        tableView.reloadData()
     }
     
     @objc func searchButtonPressed() {
-        if searchTypes.count == 4 {
-            let indexPath = IndexPath(row: 0, section: 0)
+        for cellNum in 0..<(5 - searchTypes.count) {
+            let indexPath = IndexPath(row: cellNum, section: 0)
             let cell = tableView.cellForRow(at: indexPath) as! SearchCell
             searchParameters[cell.searchTypeTextField.text!] = cell.searchKeywordTextField.text
-        } else {
-            for cellNum in 0..<(4 - searchTypes.count) {
-                let indexPath = IndexPath(row: cellNum, section: 0)
-                let cell = tableView.cellForRow(at: indexPath) as! SearchCell
-                searchParameters[cell.searchTypeTextField.text!] = cell.searchKeywordTextField.text
-            }
         }
         TwitterAPI.get(searchParameters: searchParameters, completion: handleSearchResults(results:error:))
     }
@@ -91,7 +87,11 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return (5 - searchTypes.count)
+            if searchTypes.count > 0 {
+                return (5 - searchTypes.count)
+            } else {
+                return 4
+            }
         } else {
             return 1
         }
@@ -106,7 +106,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: ButtonCell.defaultReuseIdentifier, for: indexPath) as! ButtonCell
             cell.searchButton.layer.cornerRadius = 5
             cell.searchButton.addTarget(self, action: #selector(searchButtonPressed), for: .touchUpInside)
-            cell.addSearchFieldButton .addTarget(self, action: #selector(addSearchFieldButtonPressed), for: .touchUpInside)
+            cell.addSearchFieldButton.addTarget(self, action: #selector(addSearchFieldButtonPressed), for: .touchUpInside)
             cell.addSearchFieldButton.layer.cornerRadius = 17.5
             cell.addSearchFieldButton.layer.borderWidth = 1.5
             cell.addSearchFieldButton.layer.borderColor = UIColor.white.cgColor
