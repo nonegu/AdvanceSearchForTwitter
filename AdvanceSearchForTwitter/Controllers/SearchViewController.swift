@@ -15,7 +15,21 @@ class SearchViewController: UIViewController {
     let searchTypePickerView: UIPickerView = {
         let pickerView = UIPickerView()
         pickerView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        pickerView.alpha = 0.8
+        
         return pickerView
+    }()
+    lazy var searchTypePickerViewToolbar: UIToolbar = {
+        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: searchTypePickerView.frame.size.width, height: 25))
+        toolbar.translatesAutoresizingMaskIntoConstraints = false
+        toolbar.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(toolbarDoneButtonPressed))
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: self, action: nil)
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(toolbarCancelButtonPressed))
+        toolbar.setItems([cancelButton, flexibleSpace, doneButton], animated: true)
+        toolbar.isUserInteractionEnabled = true
+        toolbar.sizeToFit()
+        return toolbar
     }()
     var searchParameters = [String: String]()
     var searchResults = [Tweet]()
@@ -59,6 +73,20 @@ class SearchViewController: UIViewController {
         TwitterAPI.get(searchParameters: searchParameters, completion: handleSearchResults(results:error:))
     }
     
+    @objc func toolbarDoneButtonPressed() {
+        let row = searchTypePickerView.selectedRow(inComponent: 0)
+        let indexPath = IndexPath(row: (4-searchTypes.count), section: 0)
+        let cell = tableView.cellForRow(at: indexPath) as! SearchCell
+        cell.searchTypeTextField.text = searchTypes[row]
+        cell.searchTypeTextField.resignFirstResponder()
+    }
+    
+    @objc func toolbarCancelButtonPressed() {
+        let indexPath = IndexPath(row: (4-searchTypes.count), section: 0)
+        let cell = tableView.cellForRow(at: indexPath) as! SearchCell
+        cell.searchTypeTextField.resignFirstResponder()
+    }
+    
     func handleSearchResults(results: [Tweet], error: Error?) {
         guard error == nil else {
             print(error!)
@@ -97,6 +125,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: SearchCell.defaultReuseIdentifier, for: indexPath) as! SearchCell
             cell.searchTypeTextField.inputView = searchTypePickerView
+            cell.searchTypeTextField.inputAccessoryView = searchTypePickerViewToolbar
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: ButtonCell.defaultReuseIdentifier, for: indexPath) as! ButtonCell
