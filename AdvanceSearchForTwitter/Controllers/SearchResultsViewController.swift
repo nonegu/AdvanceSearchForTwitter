@@ -20,6 +20,12 @@ class SearchResultsViewController: UIViewController {
         super.viewDidLoad()
         
         collectionView.register(UINib(nibName: TwitterCell.defaultReuseIdentifier, bundle: nil), forCellWithReuseIdentifier: TwitterCell.defaultReuseIdentifier)
+        
+        if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            let width = collectionView.frame.width - 20
+            flowLayout.estimatedItemSize = CGSize(width: width, height: 200)
+        }
+        
         collectionView.delegate = self
         collectionView.dataSource = self
     }
@@ -47,10 +53,6 @@ extension SearchResultsViewController: UICollectionViewDelegate, UICollectionVie
         cell.profileImage.kf.setImage(with: URL(string: url))
         cell.layer.cornerRadius = 5
         return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.size.width - 20, height: 180)
     }
     
     
