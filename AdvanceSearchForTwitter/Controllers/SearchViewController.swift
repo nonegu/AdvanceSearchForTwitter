@@ -49,10 +49,16 @@ class SearchViewController: UIViewController {
     }
     
     @objc func searchButtonPressed() {
-        for cellNum in 0..<(4 - searchTypes.count) {
-            let indexPath = IndexPath(row: cellNum, section: 0)
+        if searchTypes.count == 4 {
+            let indexPath = IndexPath(row: 0, section: 0)
             let cell = tableView.cellForRow(at: indexPath) as! SearchCell
             searchParameters[cell.searchTypeTextField.text!] = cell.searchKeywordTextField.text
+        } else {
+            for cellNum in 0..<(4 - searchTypes.count) {
+                let indexPath = IndexPath(row: cellNum, section: 0)
+                let cell = tableView.cellForRow(at: indexPath) as! SearchCell
+                searchParameters[cell.searchTypeTextField.text!] = cell.searchKeywordTextField.text
+            }
         }
         TwitterAPI.get(searchParameters: searchParameters, completion: handleSearchResults(results:error:))
     }
