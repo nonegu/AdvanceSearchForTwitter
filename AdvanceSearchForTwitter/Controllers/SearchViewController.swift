@@ -52,16 +52,17 @@ class SearchViewController: UIViewController {
     }
     
     @objc func addSearchFieldButtonPressed() {
-        print(searchTypes)
-        if searchTypes.count > 0 {
-            let indexPath = IndexPath(row: (4-searchTypes.count), section: 0)
-            let cell = tableView.cellForRow(at: indexPath) as! SearchCell
+        let indexPath = IndexPath(row: (4-searchTypes.count), section: 0)
+        let cell = tableView.cellForRow(at: indexPath) as! SearchCell
+        if searchTypes.contains(cell.searchTypeTextField.text!) {
             cell.searchTypeTextField.isUserInteractionEnabled = false
             cell.searchTypeTextField.backgroundColor = UIColor.lightGray
             searchTypes.removeAll { (type) -> Bool in
                 type == cell.searchTypeTextField.text
             }
             tableView.reloadData()
+        } else {
+            displayAlert(title: "Search Type Error", with: "Please select a valid type from the list.")
         }
     }
     
