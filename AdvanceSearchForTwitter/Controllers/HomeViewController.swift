@@ -63,13 +63,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TwitterCell.defaultReuseIdentifier, for: indexPath) as! TwitterCell
-        cell.userNickname.text = tweets[indexPath.row].user.name
-        cell.username.text = "@\(tweets[indexPath.row].user.screenName)"
-        cell.tweetText.text = tweets[indexPath.row].fullText
-        let url = tweets[indexPath.row].user.profileImageUrlHttps
-        cell.profileImage.kf.indicatorType = .activity
-        cell.profileImage.kf.setImage(with: URL(string: url))
-        cell.layer.cornerRadius = 5
+        cell.tweetData = tweets[indexPath.row]
         return cell
     }
     

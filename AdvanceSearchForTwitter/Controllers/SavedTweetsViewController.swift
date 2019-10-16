@@ -38,17 +38,13 @@ extension SavedTweetsViewController: UICollectionViewDelegate, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TwitterCell.defaultReuseIdentifier, for: indexPath) as! TwitterCell
-        cell.layer.cornerRadius = 5
         if tweets.count == 0 {
+            cell.userNickname.text = ""
+            cell.username.text = ""
             cell.tweetText.text = "No tweets saved yet!"
             cell.tweetText.textAlignment = .center
         } else {
-            cell.userNickname.text = tweets[indexPath.row].user.name
-            cell.username.text = "@\(tweets[indexPath.row].user.screenName)"
-            cell.tweetText.text = tweets[indexPath.row].fullText
-            let url = tweets[indexPath.row].user.profileImageUrlHttps
-            cell.profileImage.kf.indicatorType = .activity
-            cell.profileImage.kf.setImage(with: URL(string: url))
+            cell.tweetData = tweets[indexPath.row]
         }
         return cell
     }

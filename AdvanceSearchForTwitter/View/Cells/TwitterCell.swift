@@ -20,10 +20,21 @@ class TwitterCell: UICollectionViewCell {
     static var defaultReuseIdentifier: String {
         return "\(self)"
     }
+    var tweetData: Tweet? {
+        didSet {
+            userNickname.text = tweetData!.user.name
+            username.text = "@\(tweetData!.user.screenName)"
+            tweetText.text = tweetData!.fullText
+            let url = tweetData!.user.profileImageUrlHttps
+            profileImage.kf.indicatorType = .activity
+            profileImage.kf.setImage(with: URL(string: url))
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        layer.cornerRadius = 5
     }
     
     override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
