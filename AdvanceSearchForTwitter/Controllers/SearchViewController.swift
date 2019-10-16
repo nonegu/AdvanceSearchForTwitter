@@ -52,6 +52,7 @@ class SearchViewController: UIViewController {
     }
     
     @objc func addSearchFieldButtonPressed() {
+        print(searchTypes)
         if searchTypes.count > 0 {
             let indexPath = IndexPath(row: (4-searchTypes.count), section: 0)
             let cell = tableView.cellForRow(at: indexPath) as! SearchCell
@@ -147,7 +148,31 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
 
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        if indexPath.section == 0 && indexPath.row > 0 {
+            let delete = deleteAction(at: indexPath)
+            return UISwipeActionsConfiguration(actions: [delete])
+        } else {
+            return nil
+        }
+    }
     
+    func deleteAction(at indexPath: IndexPath) -> UIContextualAction {
+        let action = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (action, view, completion) in
+            let cell = self?.tableView.cellForRow(at: IndexPath(item: indexPath.row - 1, section: indexPath.section)) as! SearchCell
+            cell.searchTypeTextField.isUserInteractionEnabled = true
+            cell.searchTypeTextField.backgroundColor = UIColor.white
+            if let searchType = cell.searchTypeTextField.text {
+                self?.searchTypes.append(searchType)
+            }
+            self?.tableView.reloadData()
+            completion(true)
+        }
+        action.image = UIImage(systemName: "trash.fill")
+        action.backgroundColor = UIColor.red
+
+        return action
+    }
     
 }
 
