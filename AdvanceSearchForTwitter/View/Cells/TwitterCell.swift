@@ -15,6 +15,7 @@ class TwitterCell: UICollectionViewCell {
     @IBOutlet weak var userNickname: UILabel!
     @IBOutlet weak var username: UILabel!
     @IBOutlet weak var tweetText: UILabel!
+    @IBOutlet weak var moreButton: UIButton!
     
     // MARK: Properties
     static var defaultReuseIdentifier: String {
