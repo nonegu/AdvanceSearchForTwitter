@@ -51,11 +51,16 @@ class HomeViewController: UIViewController {
             print(error!)
         }
     }
+
+    let tweetOptionsLauncher = TweetOptionsLauncher()
     
     @objc func moreButtonPressed(sender: UIButton) {
         let buttonTag = sender.tag
         print("more button pressed on cell: \(buttonTag)")
+        tweetOptionsLauncher.showOptions(on: (navigationController?.view)!)
     }
+
+
 }
 
 // MARK: UICollectionView Delegate Methods
