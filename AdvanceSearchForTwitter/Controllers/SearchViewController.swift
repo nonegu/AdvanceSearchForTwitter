@@ -52,9 +52,9 @@ class SearchViewController: UIViewController {
     }
     
     @objc func addSearchFieldButtonPressed() {
-        let indexPath = IndexPath(row: (4-searchTypes.count), section: 0)
-        let cell = tableView.cellForRow(at: indexPath) as! SearchCell
-        if searchTypes.contains(cell.searchTypeTextField.text!) {
+        if isSearchFieldValid() {
+            let indexPath = IndexPath(row: (4-searchTypes.count), section: 0)
+            let cell = tableView.cellForRow(at: indexPath) as! SearchCell
             cell.searchTypeTextField.isUserInteractionEnabled = false
             cell.searchTypeTextField.backgroundColor = UIColor.lightGray
             searchTypes.removeAll { (type) -> Bool in
@@ -67,9 +67,7 @@ class SearchViewController: UIViewController {
     }
     
     @objc func searchButtonPressed() {
-        let lastIndexPath = IndexPath(row: (4-searchTypes.count), section: 0)
-        let lastCell = tableView.cellForRow(at: lastIndexPath) as! SearchCell
-        if searchTypes.contains(lastCell.searchTypeTextField.text!) {
+        if isSearchFieldValid() {
             for cellNum in 0..<(5 - searchTypes.count) {
                 let indexPath = IndexPath(row: cellNum, section: 0)
                 let cell = tableView.cellForRow(at: indexPath) as! SearchCell
@@ -110,6 +108,12 @@ class SearchViewController: UIViewController {
             let searchResultsVC = segue.destination as! SearchResultsViewController
             searchResultsVC.tweets = searchResults
         }
+    }
+    
+    func isSearchFieldValid() -> Bool {
+        let lastIndexPath = IndexPath(row: (4-searchTypes.count), section: 0)
+        let lastCell = tableView.cellForRow(at: lastIndexPath) as! SearchCell
+        return searchTypes.contains(lastCell.searchTypeTextField.text!)
     }
         
 }
