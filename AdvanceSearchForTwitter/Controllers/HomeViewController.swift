@@ -51,6 +51,11 @@ class HomeViewController: UIViewController {
             print(error!)
         }
     }
+    
+    @objc func moreButtonPressed(sender: UIButton) {
+        let buttonTag = sender.tag
+        print("more button pressed on cell: \(buttonTag)")
+    }
 }
 
 // MARK: UICollectionView Delegate Methods
@@ -64,6 +69,8 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TwitterCell.defaultReuseIdentifier, for: indexPath) as! TwitterCell
         cell.tweetData = tweets[indexPath.row]
+        cell.moreButton.addTarget(self, action: #selector(moreButtonPressed(sender:)), for: .touchUpInside)
+        cell.moreButton.tag = indexPath.row
         return cell
     }
     
