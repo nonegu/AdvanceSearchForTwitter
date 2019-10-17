@@ -24,7 +24,7 @@ class OptionCell: UICollectionViewCell {
                     optionName.textColor = UIColor.red
                     optionIcon.tintColor = UIColor.red
                 } else {
-                    optionIcon.tintColor = UIColor.black
+                    optionIcon.tintColor = #colorLiteral(red: 0.5206601024, green: 0.4249630868, blue: 0.6541044116, alpha: 1)
                 }
             }
         }
@@ -41,7 +41,7 @@ class OptionCell: UICollectionViewCell {
                 optionIcon.tintColor = isHighlighted ? UIColor.white : UIColor.red
                 optionName.textColor = isHighlighted ? UIColor.white : UIColor.red
             } else {
-                optionIcon.tintColor = isHighlighted ? UIColor.white : UIColor.black
+                optionIcon.tintColor = isHighlighted ? UIColor.white : #colorLiteral(red: 0.5206601024, green: 0.4249630868, blue: 0.6541044116, alpha: 1)
                 optionName.textColor = isHighlighted ? UIColor.white : UIColor.black
             }
         }
