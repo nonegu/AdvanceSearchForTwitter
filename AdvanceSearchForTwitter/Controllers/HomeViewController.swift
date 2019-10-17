@@ -21,6 +21,7 @@ class HomeViewController: UIViewController {
     var tweets = [Tweet]()
     lazy var tweetOptionsLauncher: TweetOptionsLauncher = {
         let launcher = TweetOptionsLauncher()
+        launcher.responsibleViewController = self
         // homeViewController will not be able to delete any tweets, so delete option removed.
         launcher.options.remove(at: 3)
         return launcher
@@ -102,6 +103,10 @@ class HomeViewController: UIViewController {
         let buttonTag = sender.tag
         print("more button pressed on cell: \(buttonTag)")
         tweetOptionsLauncher.showOptions(on: (navigationController?.view)!)
+    }
+    
+    override func handleTweet(option: Option) {
+        print(option.name)
     }
 
 

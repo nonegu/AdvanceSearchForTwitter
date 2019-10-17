@@ -61,10 +61,10 @@ class TweetOptionsLauncher: NSObject {
     }
     
     @objc func dismissOptionsView() {
-        UIView.animate(withDuration: 0.5) {
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.blackView.alpha = 0
             self.collectionView.frame = CGRect(x: 0, y: self.collectionView.frame.maxY, width: self.collectionView.frame.width, height: self.collectionView.frame.height)
-        }
+        }, completion: nil)
     }
     
     override init() {
@@ -93,5 +93,17 @@ extension TweetOptionsLauncher: UICollectionViewDelegate, UICollectionViewDataSo
         return CGSize(width: collectionView.frame.width, height: cellHeight)
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.blackView.alpha = 0
+            self.collectionView.frame = CGRect(x: 0, y: self.collectionView.frame.maxY, width: self.collectionView.frame.width, height: self.collectionView.frame.height)
+        }, completion: { (success) in
+            
+            let option = self.options[indexPath.row]
+            self.responsibleViewController?.handleTweet(option: option)
+            
+        })
+    }
     
 }
