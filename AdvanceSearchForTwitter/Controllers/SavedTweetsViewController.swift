@@ -22,7 +22,9 @@ class SavedTweetsViewController: UIViewController {
         }
     }
     let realm = try! Realm()
+    var notificationToken: NotificationToken? = nil
     
+    // MARK: Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -36,12 +38,34 @@ class SavedTweetsViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         
-        loadTweets()
+        loadItems()
     }
     
-    func loadTweets() {
+    func loadItems() {
         tweets = user?.tweets.sorted(byKeyPath: "senderName")
-        collectionView.reloadData()
+        subscribeToRealmNotifications()
+    }
+    
+    func subscribeToRealmNotifications() {
+        notificationToken = tweets!.observe { [weak self] (changes: RealmCollectionChange) in
+            switch changes {
+            case .initial:
+                // Results are now populated and can be accessed without blocking the UI
+                self?.collectionView.reloadData()
+            case .update(_, let deletions, let insertions, let modifications):
+                // Query results have changed, so apply them to the UITableView
+                // Always apply updates in the following order: deletions, insertions, then modifications.
+                // Handling insertions before deletions may result in unexpected behavior.
+                self?.collectionView.performBatchUpdates({
+                    self?.collectionView.deleteItems(at: deletions.map({ IndexPath(row: $0, section: 0)}))
+                    self?.collectionView.insertItems(at: insertions.map({ IndexPath(row: $0, section: 0) }))
+                    self?.collectionView.reloadItems(at: modifications.map({ IndexPath(row: $0, section: 0) }))
+                }, completion: nil)
+            case .error(let error):
+                // An error occurred while opening the Realm file on the background worker thread
+                fatalError("\(error)")
+            }
+        }
     }
     
 }
