@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ActiveLabel
 
 class TwitterCell: UICollectionViewCell {
 
@@ -14,7 +15,7 @@ class TwitterCell: UICollectionViewCell {
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var userNickname: UILabel!
     @IBOutlet weak var username: UILabel!
-    @IBOutlet weak var tweetText: UILabel!
+    @IBOutlet weak var tweetText: ActiveLabel!
     @IBOutlet weak var moreButton: UIButton!
     
     // MARK: Properties
@@ -36,6 +37,9 @@ class TwitterCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
         layer.cornerRadius = 5
+        tweetText.hashtagColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
+        tweetText.mentionColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
+        tweetText.URLColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
     }
     
     override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
