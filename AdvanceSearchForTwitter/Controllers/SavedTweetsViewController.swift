@@ -61,7 +61,7 @@ class SavedTweetsViewController: UIViewController {
                 // Results are now populated and can be accessed without blocking the UI
                 self?.collectionView.reloadData()
             case .update(_, let deletions, let insertions, let modifications):
-                // Query results have changed, so apply them to the UITableView
+                // Query results have changed, so apply them to the UICollectionView
                 // Always apply updates in the following order: deletions, insertions, then modifications.
                 // Handling insertions before deletions may result in unexpected behavior.
                 self?.collectionView.performBatchUpdates({
