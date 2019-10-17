@@ -101,7 +101,9 @@ extension TweetOptionsLauncher: UICollectionViewDelegate, UICollectionViewDataSo
         }, completion: { (success) in
             
             let option = self.options[indexPath.row]
-            self.responsibleViewController?.handleTweet(option: option)
+            if option.name != "Cancel" {
+                self.responsibleViewController?.handleTweet(option: option)
+            }
             
         })
     }
