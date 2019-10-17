@@ -33,6 +33,11 @@ class SearchViewController: UIViewController {
     }()
     var searchParameters = [String: String]()
     var searchResults = [Tweet]()
+    var user: User? {
+        get {
+            return (self.tabBarController!.viewControllers![0] as! HomeViewController).user
+        }
+    }
     
     // MARK: Outlets
     @IBOutlet weak var tableView: UITableView!
@@ -107,6 +112,7 @@ class SearchViewController: UIViewController {
         if segue.identifier == "showResults" {
             let searchResultsVC = segue.destination as! SearchResultsViewController
             searchResultsVC.tweets = searchResults
+            searchResultsVC.user = user
         }
     }
     
