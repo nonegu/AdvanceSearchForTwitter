@@ -10,10 +10,18 @@ import UIKit
 
 class SearchResultsViewController: UIViewController {
     
-    var tweets: [Tweet]!
-    
     // MARK: Outlets
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    // MARK: Properties
+    var tweets: [Tweet]!
+    lazy var tweetOptionsLauncher: TweetOptionsLauncher = {
+        let launcher = TweetOptionsLauncher()
+        launcher.responsibleViewController = self
+        // homeViewController will not be able to delete any tweets, so delete option removed.
+        launcher.options.remove(at: 3)
+        return launcher
+    }()
     
     // MARK: Lifecycle Methods
     override func viewDidLoad() {
@@ -35,6 +43,16 @@ class SearchResultsViewController: UIViewController {
         collectionView.collectionViewLayout.invalidateLayout()
     }
     
+    @objc func moreButtonPressed(sender: UIButton) {
+        let buttonTag = sender.tag
+        print("more button pressed on cell: \(buttonTag)")
+        tweetOptionsLauncher.showOptions(on: (navigationController?.view)!)
+    }
+    
+    override func handleTweet(option: Option) {
+        print("\(option.name) called on SearchResultsVC")
+    }
+    
 }
 
 extension SearchResultsViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -46,6 +64,8 @@ extension SearchResultsViewController: UICollectionViewDelegate, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TwitterCell.defaultReuseIdentifier, for: indexPath) as! TwitterCell
         cell.tweetData = tweets[indexPath.row]
+        cell.moreButton.addTarget(self, action: #selector(moreButtonPressed(sender:)), for: .touchUpInside)
+        cell.moreButton.tag = indexPath.row
         return cell
     }
     
