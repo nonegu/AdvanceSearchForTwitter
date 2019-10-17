@@ -40,7 +40,7 @@ class HomeViewController: UIViewController {
         collectionView.dataSource = self
 //        TwitterAPI.get(url: URL(string: "https://api.twitter.com/1.1/search/tweets.json?q=from%3Atwitterdev&result_type=mixed&count=5&tweet_mode=extended")!, completion: handleSearchResults(results:error:))
         TwitterAPI.getUserData(completion: handleUserDataResult(userData:error:))
-        TwitterAPI.getTimeline(completion: handleSearchResults(results:error:))
+        TwitterAPI.getTimeline(completion: handleTimelineResults(results:error:))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -52,7 +52,7 @@ class HomeViewController: UIViewController {
         collectionView.collectionViewLayout.invalidateLayout()
     }
     
-    func handleSearchResults(results: [Tweet], error: Error?) {
+    func handleTimelineResults(results: [Tweet], error: Error?) {
         if error == nil {
             tweets = results
             DispatchQueue.main.async {
