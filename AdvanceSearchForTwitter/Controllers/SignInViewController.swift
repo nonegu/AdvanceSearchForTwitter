@@ -38,6 +38,13 @@ class SignInViewController: UIViewController {
             print(error!)
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let backItem = UIBarButtonItem()
+        backItem.title = "Logout"
+        backItem.tintColor = UIColor.white
+        navigationItem.backBarButtonItem = backItem
+    }
 
 }
 
