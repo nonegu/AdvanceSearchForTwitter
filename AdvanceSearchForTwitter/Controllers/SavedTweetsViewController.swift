@@ -7,13 +7,21 @@
 //
 
 import UIKit
+import RealmSwift
 
 class SavedTweetsViewController: UIViewController {
     
     // MARK: Outlets
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var tweets = [Tweet]()
+    // MARK: Properties
+    var tweets: Results<SavedTweet>?
+    var user: User? {
+        get {
+            return (self.tabBarController!.viewControllers![0] as! HomeViewController).user
+        }
+    }
+    let realm = try! Realm()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +30,12 @@ class SavedTweetsViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         
+        loadTweets()
+    }
+    
+    func loadTweets() {
+        tweets = user?.tweets.sorted(byKeyPath: "senderName")
+        collectionView.reloadData()
     }
     
 }
@@ -29,32 +43,31 @@ class SavedTweetsViewController: UIViewController {
 extension SavedTweetsViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if tweets.count == 0 {
+        if tweets!.count == 0 {
             return 1
         } else {
-            return tweets.count
+            return tweets!.count
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TwitterCell.defaultReuseIdentifier, for: indexPath) as! TwitterCell
-        if tweets.count == 0 {
+        if tweets!.count == 0 {
             cell.userNickname.text = ""
             cell.username.text = ""
             cell.tweetText.text = "No tweets saved yet!"
             cell.tweetText.textAlignment = .center
         } else {
-            cell.tweetData = tweets[indexPath.row]
+            let data = Tweet(fullText: tweets![indexPath.row].text!,
+                             user: UserResponse(name: tweets![indexPath.row].senderName!,
+                                                screenName: tweets![indexPath.row].senderNickname!,
+                                                profileImageUrl: tweets![indexPath.row].profileImageUrl!,
+                                                profileImageUrlHttps: tweets![indexPath.row].profileImageUrl!),
+                             retweetCount: 0,
+                             favoriteCount: 0)
+            cell.tweetData = data
         }
         return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if tweets.count == 0 {
-            return CGSize(width: collectionView.frame.size.width - 20, height: 100)
-        } else {
-            return CGSize(width: collectionView.frame.size.width - 20, height: 180)
-        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
