@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 import RealmSwift
 
 extension UIViewController {
@@ -35,6 +36,15 @@ extension UIViewController {
         } catch {
             displayAlert(title: "Save Error", with: error.localizedDescription)
         }
+    }
+    
+    func showSafariVC(for url: String) {
+        guard let url = URL(string: url) else {
+            print("invalid URL")
+            return
+        }
+        let safariVC = SFSafariViewController(url: url)
+        present(safariVC, animated: true)
     }
     
 }

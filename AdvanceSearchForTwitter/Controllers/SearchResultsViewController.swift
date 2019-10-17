@@ -65,6 +65,9 @@ class SearchResultsViewController: UIViewController {
             save(tweet: currentTweet, on: realm, with: currentUser)
         } else if option.name == "Retweet" {
             retweet(id: currentTweet.id)
+        } else if option.name == "Show on Twitter" {
+            let url = "https://twitter.com/user/statuses/" + currentTweet.id
+            showSafariVC(for: url)
         }
     }
     
