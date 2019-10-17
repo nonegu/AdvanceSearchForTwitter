@@ -26,6 +26,7 @@ class HomeViewController: UIViewController {
         launcher.options.remove(at: 3)
         return launcher
     }()
+    var tweetToBeInteractedWith: Tweet?
     
     // MARK: Lifecycle Methods
     override func viewDidLoad() {
@@ -101,12 +102,33 @@ class HomeViewController: UIViewController {
     
     @objc func moreButtonPressed(sender: UIButton) {
         let buttonTag = sender.tag
+        tweetToBeInteractedWith = tweets[buttonTag]
         print("more button pressed on cell: \(buttonTag)")
         tweetOptionsLauncher.showOptions(on: (navigationController?.view)!)
     }
     
     override func handleTweet(option: Option) {
-        print(option.name)
+        if option.name == "Save" {
+            guard let currentTweet = tweetToBeInteractedWith else {
+                return
+            }
+            save(tweet: currentTweet)
+        }
+    }
+    
+    func save(tweet: Tweet) {
+        let newTweet = SavedTweet()
+        do {
+            try realm.write {
+                newTweet.senderName = tweet.user.name
+                newTweet.senderNickname = tweet.user.screenName
+                newTweet.text = tweet.fullText
+                newTweet.profileImageUrl = tweet.user.profileImageUrlHttps
+                user?.tweets.append(newTweet)
+            }
+        } catch {
+            self.displayAlert(title: "Save Error", with: error.localizedDescription)
+        }
     }
 
 
