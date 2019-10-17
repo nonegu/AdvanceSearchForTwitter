@@ -108,16 +108,29 @@ class HomeViewController: UIViewController {
     }
     
     override func handleTweet(option: Option) {
+        guard let currentTweet = tweetToBeInteractedWith else {
+            return
+        }
         if option.name == "Save" {
-            guard let currentTweet = tweetToBeInteractedWith else {
-                return
-            }
             guard let currentUser = user else {
                 return
             }
             save(tweet: currentTweet, on: realm, with: currentUser)
+        } else if option.name == "Retweet" {
+            retweet(id: currentTweet.id)
         }
     }
+    
+    func retweet(id: String) {
+        TwitterAPI.postRetweet(tweetID: id) { (success, error) in
+            if success {
+                self.displayAlert(title: "Successful", with: "Retweet completed.")
+            } else {
+                self.displayAlert(title: "Retweet Error", with: error!.localizedDescription)
+            }
+        }
+    }
+    
 
 
 }

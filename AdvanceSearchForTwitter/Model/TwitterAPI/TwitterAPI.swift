@@ -28,6 +28,7 @@ class TwitterAPI {
         
         case getTimeline
         case getUserData
+        case postRetweet(id: String)
         case getSearchResults(from: String?, to: String?, hashtag: String?, mentioned: String?)
         
         var stringValue: String {
@@ -36,6 +37,8 @@ class TwitterAPI {
                 return Endpoints.base + "/statuses/home_timeline.json?count=40&tweet_mode=extended"
             case .getUserData:
                 return Endpoints.base + "/account/verify_credentials.json"
+            case .postRetweet(let id):
+                return Endpoints.base + "/statuses/retweet/\(id).json"
             case .getSearchResults(let from, let to, let hashtag, let mentioned):
                 var url = Endpoints.base + Endpoints.searchBase
                 if let from = from {
@@ -134,4 +137,17 @@ class TwitterAPI {
             }
         })
     }
+    
+    class func postRetweet(tweetID: String, completion: @escaping (Bool, Error?) -> Void) {
+        oauthswift.client.post(Endpoints.postRetweet(id: tweetID).url) { (result) in
+            switch result {
+            case .success(let response):
+                print(String(data: response.data, encoding: .utf8)!)
+                completion(true, nil)
+            case .failure(let error):
+                completion(false, error)
+            }
+        }
+    }
+    
 }
