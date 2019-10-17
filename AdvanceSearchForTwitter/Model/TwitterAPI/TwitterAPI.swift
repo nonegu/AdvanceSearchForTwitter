@@ -23,14 +23,18 @@ class TwitterAPI {
     var isFirstQuery = true
     
     enum Endpoints {
-        static let searchBase = "https://api.twitter.com/1.1/search/tweets.json?q="
+        static let base = "https://api.twitter.com/1.1"
+        static let searchBase = "/search/tweets.json?q="
         
+        case getTimeline
         case getSearchResults(from: String?, to: String?, hashtag: String?, mentioned: String?)
         
         var stringValue: String {
             switch self {
+            case .getTimeline:
+                return Endpoints.base + "/statuses/home_timeline.json?count=40&tweet_mode=extended"
             case .getSearchResults(let from, let to, let hashtag, let mentioned):
-                var url = Endpoints.searchBase
+                var url = Endpoints.base + Endpoints.searchBase
                 if let from = from {
                     url += "from%3A\(from)&"
                 }
@@ -86,8 +90,8 @@ class TwitterAPI {
         })
     }
     
-    class func getTimeline(url: URL, completion: @escaping ([Tweet], Error?) -> Void) {
-        oauthswift.client.get(url, completionHandler: { (result) in
+    class func getTimeline(completion: @escaping ([Tweet], Error?) -> Void) {
+        oauthswift.client.get(Endpoints.getTimeline.url, completionHandler: { (result) in
             switch result {
             case .success(let response):
                 let decoder = JSONDecoder()
