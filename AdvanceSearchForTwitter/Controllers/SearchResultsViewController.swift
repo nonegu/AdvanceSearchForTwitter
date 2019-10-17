@@ -62,7 +62,7 @@ class SearchResultsViewController: UIViewController {
             guard let currentUser = user else {
                 return
             }
-            save(realm: realm, user: currentUser, tweet: currentTweet)
+            save(tweet: currentTweet, on: realm, with: currentUser)
         }
     }
     

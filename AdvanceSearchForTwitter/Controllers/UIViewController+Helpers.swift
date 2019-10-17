@@ -22,7 +22,7 @@ extension UIViewController {
         
     }
     
-    func save(realm: Realm, user: User, tweet: Tweet) {
+    func save(tweet: Tweet, on realm: Realm, with user: User) {
         let newTweet = SavedTweet()
         do {
             try realm.write {
