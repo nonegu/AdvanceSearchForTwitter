@@ -62,7 +62,7 @@ class TweetOptionsLauncher: NSObject {
     @objc func dismissOptionsView() {
         UIView.animate(withDuration: 0.5) {
             self.blackView.alpha = 0
-            self.collectionView.frame = CGRect(x: 0, y: self.collectionView.frame.maxY + 200, width: self.collectionView.frame.width, height: self.collectionView.frame.height)
+            self.collectionView.frame = CGRect(x: 0, y: self.collectionView.frame.maxY, width: self.collectionView.frame.width, height: self.collectionView.frame.height)
         }
     }
     
