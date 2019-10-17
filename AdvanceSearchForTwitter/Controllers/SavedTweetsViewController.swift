@@ -130,7 +130,8 @@ extension SavedTweetsViewController: UICollectionViewDelegate, UICollectionViewD
                                                 profileImageUrl: tweets![indexPath.row].profileImageUrl!,
                                                 profileImageUrlHttps: tweets![indexPath.row].profileImageUrl!),
                              retweetCount: 0,
-                             favoriteCount: 0)
+                             favoriteCount: 0,
+                             id: "")
             cell.tweetData = data
         }
         return cell
