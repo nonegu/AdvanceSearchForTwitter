@@ -8,13 +8,18 @@
 
 import UIKit
 import Kingfisher
+import RealmSwift
 
 class HomeViewController: UIViewController {
     
-    var tweets = [Tweet]()
-    
     // MARK: Outlets
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    // MARK: Properties
+    let realm = try! Realm()
+    var user: User?
+    var tweets = [Tweet]()
+    let tweetOptionsLauncher = TweetOptionsLauncher()
     
     // MARK: Lifecycle Methods
     override func viewDidLoad() {
@@ -52,15 +57,41 @@ class HomeViewController: UIViewController {
             print(error!)
         }
     }
+    
     func handleUserDataResult(userData: UserResponse?, error: Error?) {
         if error == nil {
-            print(userData?.screenName)
+            guard let username = userData?.screenName else {
+                print(error!)
+                return
+            }
+            assignUser(name: username)
         } else {
             print(error!)
         }
     }
-
-    let tweetOptionsLauncher = TweetOptionsLauncher()
+    
+    // check if user exists, if not create a new user
+    func assignUser(name: String){
+        let users = realm.objects(User.self)
+        let currentUser = User()
+        currentUser.name = name
+        if !users.contains(where: { (user) -> Bool in user.name == currentUser.name }) {
+            createNewUser(user: currentUser)
+        } else {
+            self.user = users.first(where: { (user) -> Bool in user.name == currentUser.name })
+        }
+    }
+    
+    func createNewUser(user: User) {
+        do {
+            try realm.write {
+                realm.add(user)
+            }
+        } catch {
+            displayAlert(title: "Register Error", with: error.localizedDescription)
+        }
+        self.user = user
+    }
     
     @objc func moreButtonPressed(sender: UIButton) {
         let buttonTag = sender.tag

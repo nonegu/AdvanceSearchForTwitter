@@ -8,6 +8,7 @@
 
 import UIKit
 import OAuthSwift
+import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +17,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        do {
+            let _ = try Realm()
+        } catch {
+            print("Error initialising new Realm \(error)")
+        }
+        
         return true
     }
 
