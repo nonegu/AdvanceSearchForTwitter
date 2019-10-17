@@ -23,6 +23,14 @@ class SavedTweetsViewController: UIViewController {
     }
     let realm = try! Realm()
     var notificationToken: NotificationToken? = nil
+    lazy var tweetOptionsLauncher: TweetOptionsLauncher = {
+        let launcher = TweetOptionsLauncher()
+        launcher.responsibleViewController = self
+        // SavedTweetsViewController will not be able to save any tweets, so save option removed.
+        launcher.options.remove(at: 2)
+        return launcher
+    }()
+    var tweetToBeInteractedWith: SavedTweet?
     
     // MARK: Lifecycle Methods
     override func viewDidLoad() {
@@ -68,6 +76,32 @@ class SavedTweetsViewController: UIViewController {
         }
     }
     
+    @objc func moreButtonPressed(sender: UIButton) {
+        let buttonTag = sender.tag
+        tweetToBeInteractedWith = tweets?[buttonTag]
+        print("more button pressed on cell: \(buttonTag)")
+        tweetOptionsLauncher.showOptions(on: (navigationController?.view)!)
+    }
+    
+    override func handleTweet(option: Option) {
+        if option.name == "Delete" {
+            guard let currentTweet = tweetToBeInteractedWith else {
+                return
+            }
+            delete(tweet: currentTweet)
+        }
+    }
+    
+    func delete(tweet: SavedTweet) {
+        do {
+            try self.realm.write {
+                self.realm.delete(tweet)
+            }
+        } catch {
+            displayAlert(title: "Error deleting tweet", with:"\(error.localizedDescription)")
+        }
+    }
+    
 }
 
 extension SavedTweetsViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -88,6 +122,8 @@ extension SavedTweetsViewController: UICollectionViewDelegate, UICollectionViewD
             cell.tweetText.text = "No tweets saved yet!"
             cell.tweetText.textAlignment = .center
         } else {
+            cell.moreButton.addTarget(self, action: #selector(moreButtonPressed(sender:)), for: .touchUpInside)
+            cell.moreButton.tag = indexPath.row
             let data = Tweet(fullText: tweets![indexPath.row].text!,
                              user: UserResponse(name: tweets![indexPath.row].senderName!,
                                                 screenName: tweets![indexPath.row].senderNickname!,
