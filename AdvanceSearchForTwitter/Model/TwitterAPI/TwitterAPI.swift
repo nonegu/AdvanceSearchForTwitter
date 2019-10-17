@@ -27,12 +27,15 @@ class TwitterAPI {
         static let searchBase = "/search/tweets.json?q="
         
         case getTimeline
+        case getUserData
         case getSearchResults(from: String?, to: String?, hashtag: String?, mentioned: String?)
         
         var stringValue: String {
             switch self {
             case .getTimeline:
                 return Endpoints.base + "/statuses/home_timeline.json?count=40&tweet_mode=extended"
+            case .getUserData:
+                return Endpoints.base + "/account/verify_credentials.json"
             case .getSearchResults(let from, let to, let hashtag, let mentioned):
                 var url = Endpoints.base + Endpoints.searchBase
                 if let from = from {
@@ -103,6 +106,27 @@ class TwitterAPI {
                 } catch {
                     DispatchQueue.main.async {
                         completion([], error)
+                    }
+                }
+            case .failure(let error):
+                print(error)
+            }
+        })
+    }
+    
+    class func getUserData(completion: @escaping (UserResponse?, Error?) -> Void) {
+        oauthswift.client.get(Endpoints.getUserData.url, completionHandler: { (result) in
+            switch result {
+            case .success(let response):
+                let decoder = JSONDecoder()
+                do {
+                    let decodedResponse = try decoder.decode(UserResponse.self, from: response.data)
+                    DispatchQueue.main.async {
+                        completion(decodedResponse, nil)
+                    }
+                } catch {
+                    DispatchQueue.main.async {
+                        completion(nil, error)
                     }
                 }
             case .failure(let error):

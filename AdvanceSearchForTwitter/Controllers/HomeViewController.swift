@@ -29,6 +29,7 @@ class HomeViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
 //        TwitterAPI.get(url: URL(string: "https://api.twitter.com/1.1/search/tweets.json?q=from%3Atwitterdev&result_type=mixed&count=5&tweet_mode=extended")!, completion: handleSearchResults(results:error:))
+        TwitterAPI.getUserData(completion: handleUserDataResult(userData:error:))
         TwitterAPI.getTimeline(completion: handleSearchResults(results:error:))
     }
     
@@ -47,6 +48,13 @@ class HomeViewController: UIViewController {
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
             }
+        } else {
+            print(error!)
+        }
+    }
+    func handleUserDataResult(userData: UserResponse?, error: Error?) {
+        if error == nil {
+            print(userData?.screenName)
         } else {
             print(error!)
         }
