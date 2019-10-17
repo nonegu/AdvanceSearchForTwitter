@@ -112,22 +112,10 @@ class HomeViewController: UIViewController {
             guard let currentTweet = tweetToBeInteractedWith else {
                 return
             }
-            save(tweet: currentTweet)
-        }
-    }
-    
-    func save(tweet: Tweet) {
-        let newTweet = SavedTweet()
-        do {
-            try realm.write {
-                newTweet.senderName = tweet.user.name
-                newTweet.senderNickname = tweet.user.screenName
-                newTweet.text = tweet.fullText
-                newTweet.profileImageUrl = tweet.user.profileImageUrlHttps
-                user?.tweets.append(newTweet)
+            guard let currentUser = user else {
+                return
             }
-        } catch {
-            self.displayAlert(title: "Save Error", with: error.localizedDescription)
+            save(realm: realm, user: currentUser, tweet: currentTweet)
         }
     }
 
