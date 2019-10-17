@@ -19,7 +19,12 @@ class HomeViewController: UIViewController {
     let realm = try! Realm()
     var user: User?
     var tweets = [Tweet]()
-    let tweetOptionsLauncher = TweetOptionsLauncher()
+    lazy var tweetOptionsLauncher: TweetOptionsLauncher = {
+        let launcher = TweetOptionsLauncher()
+        // homeViewController will not be able to delete any tweets, so delete option removed.
+        launcher.options.remove(at: 3)
+        return launcher
+    }()
     
     // MARK: Lifecycle Methods
     override func viewDidLoad() {

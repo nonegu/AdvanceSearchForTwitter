@@ -37,6 +37,7 @@ class TweetOptionsLauncher: NSObject {
                 Option(name: "Cancel", iconName: "multiply.circle.fill")]
     }()
     let cellHeight: CGFloat = 50
+    var responsibleViewController: UIViewController?
     
     // show options menu
     func showOptions(on view: UIView) {
@@ -79,7 +80,7 @@ class TweetOptionsLauncher: NSObject {
 extension TweetOptionsLauncher: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return options.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
