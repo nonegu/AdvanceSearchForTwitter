@@ -27,6 +27,12 @@ class SavedTweetsViewController: UIViewController {
         super.viewDidLoad()
         
         collectionView.register(UINib(nibName: TwitterCell.defaultReuseIdentifier, bundle: nil), forCellWithReuseIdentifier: TwitterCell.defaultReuseIdentifier)
+        
+        if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            let width = collectionView.frame.width - 20
+            flowLayout.estimatedItemSize = CGSize(width: width, height: 200)
+        }
+        
         collectionView.delegate = self
         collectionView.dataSource = self
         
