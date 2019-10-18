@@ -22,6 +22,7 @@
 		B6785D7B23587F2600650959 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6785D7A23587F2600650959 /* User.swift */; };
 		B6785D7D23587F4300650959 /* SavedTweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6785D7C23587F4300650959 /* SavedTweet.swift */; };
 		B6AF55F92359F5F2001D5CB2 /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6AF55F82359F5F2001D5CB2 /* Option.swift */; };
+		B6AF55FB235A0D87001D5CB2 /* SearchViewController+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6AF55FA235A0D87001D5CB2 /* SearchViewController+Keyboard.swift */; };
 		B6B5DAC2233CBBF800CF3B58 /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B5DAC1233CBBF800CF3B58 /* SearchCell.swift */; };
 		B6B5DAC4233CC85400CF3B58 /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B5DAC3233CC85400CF3B58 /* ButtonCell.swift */; };
 		B6BC1C9A234B1E1300FEA492 /* SavedTweetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BC1C99234B1E1300FEA492 /* SavedTweetsViewController.swift */; };
@@ -56,6 +57,7 @@
 		B6785D7A23587F2600650959 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B6785D7C23587F4300650959 /* SavedTweet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedTweet.swift; sourceTree = "<group>"; };
 		B6AF55F82359F5F2001D5CB2 /* Option.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Option.swift; sourceTree = "<group>"; };
+		B6AF55FA235A0D87001D5CB2 /* SearchViewController+Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchViewController+Keyboard.swift"; sourceTree = "<group>"; };
 		B6B5DAC1233CBBF800CF3B58 /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
 		B6B5DAC3233CC85400CF3B58 /* ButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
 		B6BC1C99234B1E1300FEA492 /* SavedTweetsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedTweetsViewController.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 				B62806282338EA19009BBDD7 /* SignInViewController.swift */,
 				B628063D2338EE2E009BBDD7 /* HomeViewController.swift */,
 				B643215F233B6A7000C76C5E /* SearchViewController.swift */,
+				B6AF55FA235A0D87001D5CB2 /* SearchViewController+Keyboard.swift */,
 				B6F7E3432344C60D0066DA96 /* SearchResultsViewController.swift */,
 				B6BC1C99234B1E1300FEA492 /* SavedTweetsViewController.swift */,
 				B6EC4AD823571F2C004BE8C1 /* UIViewController+Helpers.swift */,
@@ -322,6 +325,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6432160233B6A7000C76C5E /* SearchViewController.swift in Sources */,
+				B6AF55FB235A0D87001D5CB2 /* SearchViewController+Keyboard.swift in Sources */,
 				B6F7E3442344C60D0066DA96 /* SearchResultsViewController.swift in Sources */,
 				B6B5DAC2233CBBF800CF3B58 /* SearchCell.swift in Sources */,
 				B628063E2338EE2E009BBDD7 /* HomeViewController.swift in Sources */,
