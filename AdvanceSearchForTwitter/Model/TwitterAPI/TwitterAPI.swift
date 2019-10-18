@@ -13,7 +13,7 @@ class TwitterAPI {
     
     static let oauthswift = OAuth1Swift(
         consumerKey:    "ENTER_YOUR_CONSUMER_KEY_HERE",
-        consumerSecret: "ENTER_YOUR_CONSUMER_SECRET_HERE,
+        consumerSecret: "ENTER_YOUR_CONSUMER_SECRET_HERE",
         requestTokenUrl: "https://api.twitter.com/oauth/request_token",
         authorizeUrl:    "https://api.twitter.com/oauth/authorize",
         accessTokenUrl:  "https://api.twitter.com/oauth/access_token"
