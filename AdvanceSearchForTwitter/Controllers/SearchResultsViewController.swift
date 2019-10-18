@@ -113,14 +113,27 @@ class SearchResultsViewController: UIViewController {
 extension SearchResultsViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return tweets.count
+        if tweets.count == 0 {
+            return 1
+        } else {
+            return tweets.count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TwitterCell.defaultReuseIdentifier, for: indexPath) as! TwitterCell
-        cell.tweetData = tweets[indexPath.row]
-        cell.moreButton.addTarget(self, action: #selector(moreButtonPressed(sender:)), for: .touchUpInside)
-        cell.moreButton.tag = indexPath.row
+        if tweets.count == 0 {
+            cell.userNickname.text = ""
+            cell.username.text = ""
+            cell.tweetText.text = "No tweets found!"
+            cell.tweetText.textAlignment = .center
+            cell.profileImage.isHidden = true
+            cell.moreButton.isHidden = true
+        } else {
+            cell.tweetData = tweets[indexPath.row]
+            cell.moreButton.addTarget(self, action: #selector(moreButtonPressed(sender:)), for: .touchUpInside)
+            cell.moreButton.tag = indexPath.row
+        }
         return cell
     }
     
