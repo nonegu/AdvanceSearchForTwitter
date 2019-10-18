@@ -51,6 +51,10 @@ class SearchResultsViewController: UIViewController {
         collectionView.collectionViewLayout.invalidateLayout()
     }
     
+    @IBAction func cancelPressed(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     @objc func moreButtonPressed(sender: UIButton) {
         tweetToBeInteractedWith = tweets[sender.tag]
         // check if the tweetOptionsLauncher has delete option

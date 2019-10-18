@@ -227,7 +227,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="V4V-vq-uLy">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="53" width="375" height="594"/>
                                 <color key="backgroundColor" red="0.4431372549" green="0.33725490200000002" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Xym-Vf-fpA">
                                     <size key="itemSize" width="50" height="50"/>
@@ -246,10 +246,23 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qnZ-5h-J4F">
+                                <rect key="frame" x="16" y="16" width="44" height="29"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancelPressed:" destination="Iwl-jg-dLa" eventType="touchUpInside" id="nN1-DS-y2t"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" red="0.4431372549" green="0.33725490200000002" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="V4V-vq-uLy" firstAttribute="top" secondItem="j9G-f4-saa" secondAttribute="top" id="c8W-hE-izK"/>
+                            <constraint firstItem="j9G-f4-saa" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="qnZ-5h-J4F" secondAttribute="trailing" constant="16" id="POM-S0-UdH"/>
+                            <constraint firstItem="V4V-vq-uLy" firstAttribute="top" secondItem="qnZ-5h-J4F" secondAttribute="bottom" constant="8" id="c8W-hE-izK"/>
+                            <constraint firstItem="qnZ-5h-J4F" firstAttribute="leading" secondItem="j9G-f4-saa" secondAttribute="leading" constant="16" id="f1U-Vd-bUp"/>
+                            <constraint firstItem="qnZ-5h-J4F" firstAttribute="top" secondItem="j9G-f4-saa" secondAttribute="top" constant="16" id="iVe-Av-wQZ"/>
                             <constraint firstItem="V4V-vq-uLy" firstAttribute="bottom" secondItem="j9G-f4-saa" secondAttribute="bottom" id="mub-df-zXo"/>
                             <constraint firstItem="V4V-vq-uLy" firstAttribute="trailing" secondItem="j9G-f4-saa" secondAttribute="trailing" id="tbS-YG-RvI"/>
                             <constraint firstItem="V4V-vq-uLy" firstAttribute="leading" secondItem="j9G-f4-saa" secondAttribute="leading" id="yfU-nn-IfJ"/>
