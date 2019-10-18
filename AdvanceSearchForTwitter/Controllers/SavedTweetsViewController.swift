@@ -84,11 +84,19 @@ class SavedTweetsViewController: UIViewController {
     }
     
     override func handleTweet(option: Option) {
+        guard let currentTweet = tweetToBeInteractedWith else {
+            return
+        }
+        guard let tweetID = currentTweet.id else {
+            return
+        }
         if option.name == "Delete" {
-            guard let currentTweet = tweetToBeInteractedWith else {
-                return
-            }
             delete(tweet: currentTweet)
+        } else if option.name == "Retweet" {
+            retweet(id: tweetID)
+        } else if option.name == "Show on Twitter" {
+            let url = "https://twitter.com/user/statuses/" + tweetID
+            showSafariVC(for: url)
         }
     }
     

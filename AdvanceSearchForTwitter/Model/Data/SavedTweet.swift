@@ -10,6 +10,7 @@ import Foundation
 import RealmSwift
 
 class SavedTweet: Object {
+    @objc dynamic var id: String?
     @objc dynamic var text: String?
     @objc dynamic var senderName: String?
     @objc dynamic var senderNickname: String?

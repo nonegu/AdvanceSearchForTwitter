@@ -23,12 +23,23 @@ extension UIViewController {
         
     }
     
+    func retweet(id: String) {
+        TwitterAPI.postRetweet(tweetID: id) { (success, error) in
+            if success {
+                self.displayAlert(title: "Successful", with: "Retweet completed.")
+            } else {
+                self.displayAlert(title: "Retweet Error", with: error!.localizedDescription)
+            }
+        }
+    }
+    
     func save(tweet: Tweet, on realm: Realm, with user: User) {
         let newTweet = SavedTweet()
         do {
             try realm.write {
                 newTweet.senderName = tweet.user.name
                 newTweet.senderNickname = tweet.user.screenName
+                newTweet.id = tweet.id
                 newTweet.text = tweet.fullText
                 newTweet.profileImageUrl = tweet.user.profileImageUrlHttps
                 user.tweets.append(newTweet)

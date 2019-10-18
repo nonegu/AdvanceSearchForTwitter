@@ -95,16 +95,6 @@ class SearchResultsViewController: UIViewController {
         }
     }
     
-    func retweet(id: String) {
-        TwitterAPI.postRetweet(tweetID: id) { (success, error) in
-            if success {
-                self.displayAlert(title: "Successful", with: "Retweet completed.")
-            } else {
-                self.displayAlert(title: "Retweet Error", with: error!.localizedDescription)
-            }
-        }
-    }
-    
     func deletePermanently(id: String) {
         TwitterAPI.deleteTweet(tweetID: id) { (success, error) in
             if success {
