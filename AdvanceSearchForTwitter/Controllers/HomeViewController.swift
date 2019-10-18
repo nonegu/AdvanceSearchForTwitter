@@ -81,19 +81,19 @@ class HomeViewController: UIViewController {
                 self.collectionView.reloadData()
             }
         } else {
-            print(error!)
+            displayAlert(title: "Error downloading Timeline", with: error?.localizedDescription ?? "Something went wrong during retrieving your timeline.")
         }
     }
     
     func handleUserDataResult(userData: UserResponse?, error: Error?) {
         if error == nil {
             guard let username = userData?.screenName else {
-                print(error!)
+                displayAlert(title: "Error Getting Screen Name", with: error?.localizedDescription ?? "Something went wrong during credential validation.")
                 return
             }
             assignUser(name: username)
         } else {
-            print(error!)
+            displayAlert(title: "Error downloading UserData", with: error?.localizedDescription ?? "Something went wrong during credential validation.")
         }
     }
     
