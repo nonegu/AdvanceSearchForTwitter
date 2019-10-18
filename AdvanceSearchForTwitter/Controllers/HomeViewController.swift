@@ -27,19 +27,12 @@ class HomeViewController: UIViewController {
         return launcher
     }()
     var tweetToBeInteractedWith: Tweet?
+    private let refreshControl = UIRefreshControl()
     
     // MARK: Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.register(UINib(nibName: TwitterCell.defaultReuseIdentifier, bundle: nil), forCellWithReuseIdentifier: TwitterCell.defaultReuseIdentifier)
-        
-        if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            let width = collectionView.frame.width - 20
-            flowLayout.estimatedItemSize = CGSize(width: width, height: 200)
-        }
-        
-        collectionView.delegate = self
-        collectionView.dataSource = self
+        setupCollectionView()
 //        TwitterAPI.get(url: URL(string: "https://api.twitter.com/1.1/search/tweets.json?q=from%3Atwitterdev&result_type=mixed&count=5&tweet_mode=extended")!, completion: handleSearchResults(results:error:))
         TwitterAPI.getUserData(completion: handleUserDataResult(userData:error:))
         TwitterAPI.getTimeline(completion: handleTimelineResults(results:error:))
@@ -54,10 +47,31 @@ class HomeViewController: UIViewController {
         collectionView.collectionViewLayout.invalidateLayout()
     }
     
+    func setupCollectionView() {
+        
+        collectionView.register(UINib(nibName: TwitterCell.defaultReuseIdentifier, bundle: nil), forCellWithReuseIdentifier: TwitterCell.defaultReuseIdentifier)
+        
+        if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            let width = collectionView.frame.width - 20
+            flowLayout.estimatedItemSize = CGSize(width: width, height: 200)
+        }
+        
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        
+        // add refreshController to collectionView
+        refreshControl.addTarget(self, action: #selector(didPullToRefresh), for: .valueChanged)
+        collectionView.alwaysBounceVertical = true
+        collectionView.refreshControl = refreshControl
+    }
+    
     func handleTimelineResults(results: [Tweet], error: Error?) {
         if error == nil {
             tweets = results
             DispatchQueue.main.async {
+                if self.refreshControl.isRefreshing {
+                    self.refreshControl.endRefreshing()
+                }
                 self.collectionView.reloadData()
             }
         } else {
@@ -98,6 +112,10 @@ class HomeViewController: UIViewController {
             displayAlert(title: "Register Error", with: error.localizedDescription)
         }
         self.user = user
+    }
+    
+    @objc func didPullToRefresh() {
+        TwitterAPI.getTimeline(completion: handleTimelineResults(results:error:))
     }
     
     @objc func moreButtonPressed(sender: UIButton) {
