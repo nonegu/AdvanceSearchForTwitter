@@ -98,7 +98,7 @@ class SearchResultsViewController: UIViewController {
     }
     
     func deletePermanently(id: String) {
-        TwitterAPI.deleteTweet(tweetID: id) { (success, error) in
+        TwitterAPI.postForTask(taskName: "Delete", tweetID: id) { (success, error) in
             if success {
                 self.displayAlert(title: "Successful", with: "Tweet permanently deleted.")
             } else {

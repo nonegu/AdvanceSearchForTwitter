@@ -24,7 +24,7 @@ extension UIViewController {
     }
     
     func retweet(id: String) {
-        TwitterAPI.postRetweet(tweetID: id) { (success, error) in
+        TwitterAPI.postForTask(taskName: "Retweet", tweetID: id) { (success, error) in
             if success {
                 self.displayAlert(title: "Successful", with: "Retweet completed.")
             } else {

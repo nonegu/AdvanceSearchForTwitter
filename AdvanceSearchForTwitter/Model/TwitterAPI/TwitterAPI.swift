@@ -141,20 +141,12 @@ class TwitterAPI {
         })
     }
     
-    class func postRetweet(tweetID: String, completion: @escaping (Bool, Error?) -> Void) {
-        oauthswift.client.post(Endpoints.postRetweet(id: tweetID).url) { (result) in
-            switch result {
-            case .success(let response):
-                print(String(data: response.data, encoding: .utf8)!)
-                completion(true, nil)
-            case .failure(let error):
-                completion(false, error)
-            }
+    class func postForTask(taskName: String, tweetID: String, completion: @escaping (Bool, Error?) -> Void) {
+        var taskURL = Endpoints.postRetweet(id: tweetID).url
+        if taskName == "Delete" {
+            taskURL = Endpoints.deleteTweet(id: tweetID).url
         }
-    }
-    
-    class func deleteTweet(tweetID: String, completion: @escaping (Bool, Error?) -> Void) {
-        oauthswift.client.post(Endpoints.deleteTweet(id: tweetID).url) { (result) in
+        oauthswift.client.post(taskURL) { (result) in
             switch result {
             case .success(let response):
                 print(String(data: response.data, encoding: .utf8)!)
