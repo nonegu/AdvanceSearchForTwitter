@@ -218,7 +218,7 @@
             </objects>
             <point key="canvasLocation" x="2797.5999999999999" y="-553.67316341829087"/>
         </scene>
-        <!--Search Results View Controller-->
+        <!--Search Results-->
         <scene sceneID="qSl-ct-uiv">
             <objects>
                 <viewController id="Iwl-jg-dLa" customClass="SearchResultsViewController" customModule="AdvanceSearchForTwitter" customModuleProvider="target" sceneMemberID="viewController">
@@ -256,7 +256,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="j9G-f4-saa"/>
                     </view>
-                    <navigationItem key="navigationItem" id="IlF-SP-Dd2"/>
+                    <navigationItem key="navigationItem" title="Search Results" id="IlF-SP-Dd2"/>
                     <connections>
                         <outlet property="collectionView" destination="V4V-vq-uLy" id="fki-xm-hKO"/>
                     </connections>
@@ -387,12 +387,12 @@
             </objects>
             <point key="canvasLocation" x="132" y="112.89355322338831"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Advance Search-->
         <scene sceneID="1Jf-pX-lfE">
             <objects>
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="EW9-C8-rJj" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="X8k-0k-XZB"/>
+                    <navigationItem key="navigationItem" title="Advance Search" id="X8k-0k-XZB"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="s7L-9v-2cc">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
