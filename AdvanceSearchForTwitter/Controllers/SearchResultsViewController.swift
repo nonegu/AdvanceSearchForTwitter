@@ -67,16 +67,31 @@ class SearchResultsViewController: UIViewController {
         guard let currentTweet = tweetToBeInteractedWith else {
             return
         }
+        guard let currentUser = user else {
+            return
+        }
         if option.name == "Save" {
-            guard let currentUser = user else {
-                return
-            }
             save(tweet: currentTweet, on: realm, with: currentUser)
         } else if option.name == "Retweet" {
             retweet(id: currentTweet.id)
         } else if option.name == "Show on Twitter" {
             let url = "https://twitter.com/user/statuses/" + currentTweet.id
             showSafariVC(for: url)
+        } else if option.name == "Delete" {
+            let alertVC = UIAlertController(title: "Warning", message: "Tweet will be deleted PERMANENTLY. Are you sure to continue?", preferredStyle: .alert)
+            alertVC.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (alert) in
+                let saveACopyAlertVC = UIAlertController(title: "Save a Copy", message: "Would you like to keep a copy of the tweet on the device?", preferredStyle: .alert)
+                saveACopyAlertVC.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (alert) in
+                    self.save(tweet: currentTweet, on: self.realm, with: currentUser)
+                    self.deletePermanently(id: currentTweet.id)
+                }))
+                saveACopyAlertVC.addAction(UIAlertAction(title: "No", style: .cancel, handler: { (alert) in
+                    self.deletePermanently(id: currentTweet.id)
+                }))
+                self.present(saveACopyAlertVC, animated: true, completion: nil)
+            }))
+            alertVC.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            present(alertVC, animated: true, completion: nil)
         }
     }
     
@@ -86,6 +101,16 @@ class SearchResultsViewController: UIViewController {
                 self.displayAlert(title: "Successful", with: "Retweet completed.")
             } else {
                 self.displayAlert(title: "Retweet Error", with: error!.localizedDescription)
+            }
+        }
+    }
+    
+    func deletePermanently(id: String) {
+        TwitterAPI.deleteTweet(tweetID: id) { (success, error) in
+            if success {
+                self.displayAlert(title: "Successful", with: "Tweet permanently deleted.")
+            } else {
+                self.displayAlert(title: "Delete Error", with: error!.localizedDescription)
             }
         }
     }
