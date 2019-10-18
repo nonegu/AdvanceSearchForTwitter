@@ -211,7 +211,7 @@
                     <tabBarItem key="tabBarItem" systemItem="search" id="nGH-YP-LYO"/>
                     <connections>
                         <outlet property="tableView" destination="3Lu-51-wFf" id="WqI-Uw-wKe"/>
-                        <segue destination="Iwl-jg-dLa" kind="show" identifier="showResults" id="c3H-P0-e0U"/>
+                        <segue destination="Iwl-jg-dLa" kind="presentation" identifier="showResults" id="c3H-P0-e0U"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k8s-Lk-o5s" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -223,11 +223,11 @@
             <objects>
                 <viewController id="Iwl-jg-dLa" customClass="SearchResultsViewController" customModule="AdvanceSearchForTwitter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7Gt-R5-2II">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="V4V-vq-uLy">
-                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                                 <color key="backgroundColor" red="0.4431372549" green="0.33725490200000002" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Xym-Vf-fpA">
                                     <size key="itemSize" width="50" height="50"/>

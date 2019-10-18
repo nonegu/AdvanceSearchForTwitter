@@ -65,7 +65,7 @@ class SearchResultsViewController: UIViewController {
             tweetOptionsLauncher.options.insert(Option(name: .delete, iconName: .delete), at: 3)
         }
         print("more button pressed on cell: \(sender.tag)")
-        tweetOptionsLauncher.showOptions(on: (navigationController?.view)!)
+        tweetOptionsLauncher.showOptions(on: view)
     }
     
     override func handleTweet(option: Option) {
