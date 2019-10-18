@@ -77,9 +77,8 @@ class SavedTweetsViewController: UIViewController {
     }
     
     @objc func moreButtonPressed(sender: UIButton) {
-        let buttonTag = sender.tag
-        tweetToBeInteractedWith = tweets?[buttonTag]
-        print("more button pressed on cell: \(buttonTag)")
+        tweetToBeInteractedWith = tweets?.filter("id = %@", String(sender.tag)).first
+        print("more button pressed on cell: \(sender.tag)")
         tweetOptionsLauncher.showOptions(on: (navigationController?.view)!)
     }
     
@@ -137,7 +136,6 @@ extension SavedTweetsViewController: UICollectionViewDelegate, UICollectionViewD
             cell.tweetText.textAlignment = .center
         } else {
             cell.moreButton.addTarget(self, action: #selector(moreButtonPressed(sender:)), for: .touchUpInside)
-            cell.moreButton.tag = indexPath.row
             let data = Tweet(fullText: tweets![indexPath.row].text!,
                              user: UserResponse(name: tweets![indexPath.row].senderName!,
                                                 screenName: tweets![indexPath.row].senderNickname!,
@@ -145,7 +143,8 @@ extension SavedTweetsViewController: UICollectionViewDelegate, UICollectionViewD
                                                 profileImageUrlHttps: tweets![indexPath.row].profileImageUrl!),
                              retweetCount: 0,
                              favoriteCount: 0,
-                             id: "")
+                             id: tweets![indexPath.row].id!)
+            cell.moreButton.tag = Int(data.id)!
             cell.tweetData = data
         }
         return cell
