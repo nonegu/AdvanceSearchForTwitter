@@ -25,6 +25,11 @@ class SearchResultsViewController: UIViewController {
         return launcher
     }()
     var tweetToBeInteractedWith: Tweet?
+    lazy var emptyStatusView: UILabel = {
+        let label = UILabel()
+        label.text = "No tweets found 😭"
+        return label
+    }()
     
     // MARK: Lifecycle Methods
     override func viewDidLoad() {
@@ -114,26 +119,18 @@ extension SearchResultsViewController: UICollectionViewDelegate, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if tweets.count == 0 {
-            return 1
+            addEmptyStatusView(with: emptyStatusView, on: collectionView)
         } else {
-            return tweets.count
+            emptyStatusView.removeFromSuperview()
         }
+        return tweets.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TwitterCell.defaultReuseIdentifier, for: indexPath) as! TwitterCell
-        if tweets.count == 0 {
-            cell.userNickname.text = ""
-            cell.username.text = ""
-            cell.tweetText.text = "No tweets found!"
-            cell.tweetText.textAlignment = .center
-            cell.profileImage.isHidden = true
-            cell.moreButton.isHidden = true
-        } else {
-            cell.tweetData = tweets[indexPath.row]
-            cell.moreButton.addTarget(self, action: #selector(moreButtonPressed(sender:)), for: .touchUpInside)
-            cell.moreButton.tag = indexPath.row
-        }
+        cell.tweetData = tweets[indexPath.row]
+        cell.moreButton.addTarget(self, action: #selector(moreButtonPressed(sender:)), for: .touchUpInside)
+        cell.moreButton.tag = indexPath.row
         return cell
     }
     

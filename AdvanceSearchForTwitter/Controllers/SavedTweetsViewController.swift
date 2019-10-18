@@ -31,6 +31,11 @@ class SavedTweetsViewController: UIViewController {
         return launcher
     }()
     var tweetToBeInteractedWith: SavedTweet?
+    lazy var emptyStatusView: UILabel = {
+        let label = UILabel()
+        label.text = "No tweets saved yet!"
+        return label
+    }()
     
     // MARK: Lifecycle Methods
     override func viewDidLoad() {
@@ -121,34 +126,26 @@ extension SavedTweetsViewController: UICollectionViewDelegate, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if tweets!.count == 0 {
-            return 1
+            addEmptyStatusView(with: emptyStatusView, on: collectionView)
         } else {
-            return tweets!.count
+            emptyStatusView.removeFromSuperview()
         }
+        return tweets!.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TwitterCell.defaultReuseIdentifier, for: indexPath) as! TwitterCell
-        if tweets!.count == 0 {
-            cell.userNickname.text = ""
-            cell.username.text = ""
-            cell.tweetText.text = "No tweets saved yet!"
-            cell.tweetText.textAlignment = .center
-            cell.profileImage.isHidden = true
-            cell.moreButton.isHidden = true
-        } else {
-            cell.moreButton.addTarget(self, action: #selector(moreButtonPressed(sender:)), for: .touchUpInside)
-            let data = Tweet(fullText: tweets![indexPath.row].text!,
-                             user: UserResponse(name: tweets![indexPath.row].senderName!,
-                                                screenName: tweets![indexPath.row].senderNickname!,
-                                                profileImageUrl: tweets![indexPath.row].profileImageUrl!,
-                                                profileImageUrlHttps: tweets![indexPath.row].profileImageUrl!),
-                             retweetCount: 0,
-                             favoriteCount: 0,
-                             id: tweets![indexPath.row].id!)
-            cell.moreButton.tag = Int(data.id)!
-            cell.tweetData = data
-        }
+        cell.moreButton.addTarget(self, action: #selector(moreButtonPressed(sender:)), for: .touchUpInside)
+        let data = Tweet(fullText: tweets![indexPath.row].text!,
+                         user: UserResponse(name: tweets![indexPath.row].senderName!,
+                                            screenName: tweets![indexPath.row].senderNickname!,
+                                            profileImageUrl: tweets![indexPath.row].profileImageUrl!,
+                                            profileImageUrlHttps: tweets![indexPath.row].profileImageUrl!),
+                         retweetCount: 0,
+                         favoriteCount: 0,
+                         id: tweets![indexPath.row].id!)
+        cell.moreButton.tag = Int(data.id)!
+        cell.tweetData = data
         return cell
     }
     

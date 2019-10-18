@@ -58,4 +58,19 @@ extension UIViewController {
         present(safariVC, animated: true)
     }
     
+    func addEmptyStatusView(with label: UILabel, on collectionView: UICollectionView) {
+        label.font = UIFont(name: "HelveticaNeue-Bold", size: 14)
+        label.textAlignment = .center
+        label.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        label.layer.cornerRadius = 5
+        label.clipsToBounds = true
+        label.alpha = 0
+        let frame = CGRect(x: collectionView.frame.midX-150, y: collectionView.frame.midY-25, width: 300, height: 50)
+        view.addSubview(label)
+        label.frame = frame
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            label.alpha = 1
+        }, completion: nil)
+    }
+    
 }
