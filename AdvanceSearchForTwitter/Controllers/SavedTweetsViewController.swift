@@ -83,7 +83,6 @@ class SavedTweetsViewController: UIViewController {
     
     @objc func moreButtonPressed(sender: UIButton) {
         tweetToBeInteractedWith = tweets?.filter("id = %@", String(sender.tag)).first
-        print("more button pressed on cell: \(sender.tag)")
         tweetOptionsLauncher.showOptions(on: (navigationController?.view)!)
     }
     

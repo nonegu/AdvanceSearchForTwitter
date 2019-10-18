@@ -64,7 +64,6 @@ class SearchResultsViewController: UIViewController {
         } else if tweetToBeInteractedWith!.user.screenName == user?.name {
             tweetOptionsLauncher.options.insert(Option(name: .delete, iconName: .delete), at: 3)
         }
-        print("more button pressed on cell: \(sender.tag)")
         tweetOptionsLauncher.showOptions(on: view)
     }
     

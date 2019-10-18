@@ -111,7 +111,6 @@ class SearchViewController: UIViewController {
             displayAlert(title: "Search Error", with: error?.localizedDescription ?? "Something went wrong during the search")
             return
         }
-        print(results)
         searchResults = results
         performSegue(withIdentifier: "showResults", sender: self)
     }

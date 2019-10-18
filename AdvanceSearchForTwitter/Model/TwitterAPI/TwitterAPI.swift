@@ -94,7 +94,7 @@ class TwitterAPI {
                     }
                 }
             case .failure(let error):
-                print(error)
+                completion([], error)
             }
         })
     }
@@ -115,7 +115,7 @@ class TwitterAPI {
                     }
                 }
             case .failure(let error):
-                print(error)
+                completion([], error)
             }
         })
     }
@@ -136,7 +136,7 @@ class TwitterAPI {
                     }
                 }
             case .failure(let error):
-                print(error)
+                completion(nil, error)
             }
         })
     }
@@ -149,7 +149,6 @@ class TwitterAPI {
         oauthswift.client.post(taskURL) { (result) in
             switch result {
             case .success(let response):
-                print(String(data: response.data, encoding: .utf8)!)
                 completion(true, nil)
             case .failure(let error):
                 completion(false, error)

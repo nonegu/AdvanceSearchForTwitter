@@ -35,7 +35,7 @@ class SignInViewController: UIViewController {
         if success {
             performSegue(withIdentifier: "homePage", sender: self)
         } else {
-            print(error!)
+            displayAlert(title: "Authorization Error", with: "Twitter Authorization did not completed successfully.")
         }
     }
     

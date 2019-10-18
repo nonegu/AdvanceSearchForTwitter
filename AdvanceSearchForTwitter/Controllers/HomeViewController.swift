@@ -128,7 +128,6 @@ class HomeViewController: UIViewController {
     @objc func moreButtonPressed(sender: UIButton) {
         let buttonTag = sender.tag
         tweetToBeInteractedWith = tweets[buttonTag]
-        print("more button pressed on cell: \(buttonTag)")
         tweetOptionsLauncher.showOptions(on: (navigationController?.view)!)
     }
     
