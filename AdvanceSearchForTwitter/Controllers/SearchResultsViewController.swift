@@ -78,8 +78,10 @@ class SearchResultsViewController: UIViewController {
             let url = "https://twitter.com/user/statuses/" + currentTweet.id
             showSafariVC(for: url)
         } else if option.name == "Delete" {
+            // ask the user if the deletion should be completed
             let alertVC = UIAlertController(title: "Warning", message: "Tweet will be deleted PERMANENTLY. Are you sure to continue?", preferredStyle: .alert)
             alertVC.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (alert) in
+                // ask the user if they would like to keep a copy on the device
                 let saveACopyAlertVC = UIAlertController(title: "Save a Copy", message: "Would you like to keep a copy of the tweet on the device?", preferredStyle: .alert)
                 saveACopyAlertVC.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (alert) in
                     self.save(tweet: currentTweet, on: self.realm, with: currentUser)
