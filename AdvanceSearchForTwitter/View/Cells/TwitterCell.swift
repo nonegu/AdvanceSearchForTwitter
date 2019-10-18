@@ -27,8 +27,11 @@ class TwitterCell: UICollectionViewCell {
         didSet {
             userNickname.text = tweetData!.user.name
             username.text = "@\(tweetData!.user.screenName)"
+            tweetText.textAlignment = .left
             tweetText.text = tweetData!.fullText
+            moreButton.isHidden = false
             let url = tweetData!.user.profileImageUrlHttps
+            profileImage.isHidden = false
             profileImage.kf.indicatorType = .activity
             profileImage.kf.setImage(with: URL(string: url))
         }

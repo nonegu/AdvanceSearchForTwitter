@@ -134,6 +134,8 @@ extension SavedTweetsViewController: UICollectionViewDelegate, UICollectionViewD
             cell.username.text = ""
             cell.tweetText.text = "No tweets saved yet!"
             cell.tweetText.textAlignment = .center
+            cell.profileImage.isHidden = true
+            cell.moreButton.isHidden = true
         } else {
             cell.moreButton.addTarget(self, action: #selector(moreButtonPressed(sender:)), for: .touchUpInside)
             let data = Tweet(fullText: tweets![indexPath.row].text!,
