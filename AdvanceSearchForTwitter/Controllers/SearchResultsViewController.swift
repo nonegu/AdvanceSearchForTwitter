@@ -22,7 +22,6 @@ class SearchResultsViewController: UIViewController {
         let launcher = TweetOptionsLauncher()
         launcher.responsibleViewController = self
         // homeViewController will not be able to delete any tweets, so delete option removed.
-        launcher.options.remove(at: 3)
         return launcher
     }()
     var tweetToBeInteractedWith: Tweet?
@@ -48,9 +47,19 @@ class SearchResultsViewController: UIViewController {
     }
     
     @objc func moreButtonPressed(sender: UIButton) {
-        let buttonTag = sender.tag
-        tweetToBeInteractedWith = tweets[buttonTag]
-        print("more button pressed on cell: \(buttonTag)")
+        tweetToBeInteractedWith = tweets[sender.tag]
+        // check if the tweetOptionsLauncher has delete option
+        // remove delete option if the tweet is not sent by the user
+        if tweetOptionsLauncher.options.count == 5 {
+            if !(tweetToBeInteractedWith!.user.screenName == user?.name) {
+                tweetOptionsLauncher.options.remove(at: 3)
+            }
+            // if the tweetOptionsLauncher does not have delete option
+            // check if the tweet send by the user, if so, add delete option
+        } else if tweetToBeInteractedWith!.user.screenName == user?.name {
+            tweetOptionsLauncher.options.insert(Option(name: "Delete", iconName: "trash.fill"), at: 3)
+        }
+        print("more button pressed on cell: \(sender.tag)")
         tweetOptionsLauncher.showOptions(on: (navigationController?.view)!)
     }
     

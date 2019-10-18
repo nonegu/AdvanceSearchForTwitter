@@ -14,6 +14,7 @@ class TwitterCell: UICollectionViewCell {
     // MARK: Outlets
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var userNickname: UILabel!
+    // username is unique for each twitter account
     @IBOutlet weak var username: UILabel!
     @IBOutlet weak var tweetText: ActiveLabel!
     @IBOutlet weak var moreButton: UIButton!
