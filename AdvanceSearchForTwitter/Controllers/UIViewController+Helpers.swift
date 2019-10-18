@@ -58,6 +58,7 @@ extension UIViewController {
         present(safariVC, animated: true)
     }
     
+    // MARK: Add an emptyStatus Label to collectionView
     func addEmptyStatusView(with label: UILabel, on collectionView: UICollectionView) {
         label.font = UIFont(name: "HelveticaNeue-Bold", size: 14)
         label.textAlignment = .center
@@ -71,6 +72,16 @@ extension UIViewController {
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             label.alpha = 1
         }, completion: nil)
+    }
+    
+    // MARK: Creating an Activity Indicator
+    func createActivityIndicatorView() -> UIActivityIndicatorView {
+        let indicator = UIActivityIndicatorView(style: .large)
+        indicator.hidesWhenStopped = true
+        indicator.center = view.center
+        indicator.color = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        view.addSubview(indicator)
+        return indicator
     }
     
 }

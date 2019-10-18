@@ -28,12 +28,16 @@ class HomeViewController: UIViewController {
     }()
     var tweetToBeInteractedWith: Tweet?
     private let refreshControl = UIRefreshControl()
+    // activityIndicator can only be initiated as lazy, since it requires view to be loaded.
+    lazy var activityIndicator = createActivityIndicatorView()
     
     // MARK: Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionView()
-//        TwitterAPI.get(url: URL(string: "https://api.twitter.com/1.1/search/tweets.json?q=from%3Atwitterdev&result_type=mixed&count=5&tweet_mode=extended")!, completion: handleSearchResults(results:error:))
+        
+        activityIndicator.startAnimating()
+        navigationController?.view.isUserInteractionEnabled = false
         TwitterAPI.getUserData(completion: handleUserDataResult(userData:error:))
         TwitterAPI.getTimeline(completion: handleTimelineResults(results:error:))
     }
@@ -72,6 +76,8 @@ class HomeViewController: UIViewController {
                 if self.refreshControl.isRefreshing {
                     self.refreshControl.endRefreshing()
                 }
+                self.activityIndicator.stopAnimating()
+                self.navigationController?.view.isUserInteractionEnabled = true
                 self.collectionView.reloadData()
             }
         } else {
@@ -115,6 +121,7 @@ class HomeViewController: UIViewController {
     }
     
     @objc func didPullToRefresh() {
+        self.navigationController?.view.isUserInteractionEnabled = false
         TwitterAPI.getTimeline(completion: handleTimelineResults(results:error:))
     }
     
