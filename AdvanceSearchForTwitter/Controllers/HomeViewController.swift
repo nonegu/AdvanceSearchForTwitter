@@ -136,14 +136,14 @@ class HomeViewController: UIViewController {
         guard let currentTweet = tweetToBeInteractedWith else {
             return
         }
-        if option.name == "Save" {
+        if option.name == .save {
             guard let currentUser = user else {
                 return
             }
             save(tweet: currentTweet, on: realm, with: currentUser)
-        } else if option.name == "Retweet" {
+        } else if option.name == .retweet {
             retweet(id: currentTweet.id)
-        } else if option.name == "Show on Twitter" {
+        } else if option.name == .showOnTwitter {
             let url = "https://twitter.com/user/statuses/" + currentTweet.id
             showSafariVC(for: url)
         }

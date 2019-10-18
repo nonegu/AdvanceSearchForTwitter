@@ -17,10 +17,10 @@ class OptionCell: UICollectionViewCell {
     // MARK: Properties
     var option: Option? {
         didSet {
-            optionName.text = option?.name
-            if let icon = UIImage(systemName: option!.iconName)?.withRenderingMode(.alwaysTemplate) {
+            optionName.text = option?.name.rawValue
+            if let icon = UIImage(systemName: option!.iconName.rawValue)?.withRenderingMode(.alwaysTemplate) {
                 optionIcon.image = icon
-                if option?.name == "Delete" {
+                if option?.name == .delete {
                     optionName.textColor = UIColor.red
                     optionIcon.tintColor = UIColor.red
                 } else {
@@ -37,7 +37,7 @@ class OptionCell: UICollectionViewCell {
     override var isHighlighted: Bool {
         didSet {
             backgroundColor = isHighlighted ? #colorLiteral(red: 0.5206601024, green: 0.4249630868, blue: 0.6541044116, alpha: 1) : UIColor.white
-            if optionName.text == "Delete" {
+            if optionName.text == OptionName.delete.rawValue {
                 optionIcon.tintColor = isHighlighted ? UIColor.white : UIColor.red
                 optionName.textColor = isHighlighted ? UIColor.white : UIColor.red
             } else {

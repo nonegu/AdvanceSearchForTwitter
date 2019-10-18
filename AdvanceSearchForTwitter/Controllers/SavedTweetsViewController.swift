@@ -94,7 +94,7 @@ class SavedTweetsViewController: UIViewController {
         guard let tweetID = currentTweet.id else {
             return
         }
-        if option.name == "Delete" {
+        if option.name == .delete {
             // ask the user if the deletion should be completed
             let alertVC = UIAlertController(title: "Warning", message: "Tweet will be deleted from your device PERMANENTLY. Are you sure to continue?", preferredStyle: .alert)
             alertVC.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (alert) in
@@ -102,9 +102,9 @@ class SavedTweetsViewController: UIViewController {
             }))
             alertVC.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
             present(alertVC, animated: true, completion: nil)
-        } else if option.name == "Retweet" {
+        } else if option.name == .retweet {
             retweet(id: tweetID)
-        } else if option.name == "Show on Twitter" {
+        } else if option.name == .showOnTwitter {
             let url = "https://twitter.com/user/statuses/" + tweetID
             showSafariVC(for: url)
         }

@@ -8,16 +8,6 @@
 
 import UIKit
 
-class Option: NSObject {
-    let name: String
-    let iconName: String
-    
-    init(name: String, iconName: String) {
-        self.name = name
-        self.iconName = iconName
-    }
-}
-
 class TweetOptionsLauncher: NSObject {
     
     // MARK: Properties
@@ -30,11 +20,11 @@ class TweetOptionsLauncher: NSObject {
         return cv
     }()
     var options: [Option] = {
-        return [Option(name: "Retweet", iconName: "repeat"),
-                Option(name: "Show on Twitter", iconName: "paperplane.fill"),
-                Option(name: "Save", iconName: "book.fill"),
-                Option(name: "Delete", iconName: "trash.fill"),
-                Option(name: "Cancel", iconName: "multiply.circle.fill")]
+        return [Option(name: .retweet, iconName: .retweet),
+                Option(name: .showOnTwitter, iconName: .showOnTwitter),
+                Option(name: .save, iconName: .save),
+                Option(name: .delete, iconName: .delete),
+                Option(name: .cancel, iconName: .cancel)]
     }()
     let cellHeight: CGFloat = 50
     var responsibleViewController: UIViewController?
@@ -101,7 +91,7 @@ extension TweetOptionsLauncher: UICollectionViewDelegate, UICollectionViewDataSo
         }, completion: { (success) in
             
             let option = self.options[indexPath.row]
-            if option.name != "Cancel" {
+            if option.name != .cancel {
                 self.responsibleViewController?.handleTweet(option: option)
             }
             

@@ -62,7 +62,7 @@ class SearchResultsViewController: UIViewController {
             // if the tweetOptionsLauncher does not have delete option
             // check if the tweet send by the user, if so, add delete option
         } else if tweetToBeInteractedWith!.user.screenName == user?.name {
-            tweetOptionsLauncher.options.insert(Option(name: "Delete", iconName: "trash.fill"), at: 3)
+            tweetOptionsLauncher.options.insert(Option(name: .delete, iconName: .delete), at: 3)
         }
         print("more button pressed on cell: \(sender.tag)")
         tweetOptionsLauncher.showOptions(on: (navigationController?.view)!)
@@ -75,14 +75,14 @@ class SearchResultsViewController: UIViewController {
         guard let currentUser = user else {
             return
         }
-        if option.name == "Save" {
+        if option.name == .save {
             save(tweet: currentTweet, on: realm, with: currentUser)
-        } else if option.name == "Retweet" {
+        } else if option.name == .retweet {
             retweet(id: currentTweet.id)
-        } else if option.name == "Show on Twitter" {
+        } else if option.name == .showOnTwitter {
             let url = "https://twitter.com/user/statuses/" + currentTweet.id
             showSafariVC(for: url)
-        } else if option.name == "Delete" {
+        } else if option.name == .delete {
             // ask the user if the deletion should be completed
             let alertVC = UIAlertController(title: "Warning", message: "Tweet will be deleted PERMANENTLY. Are you sure to continue?", preferredStyle: .alert)
             alertVC.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (alert) in
@@ -103,7 +103,7 @@ class SearchResultsViewController: UIViewController {
     }
     
     func deletePermanently(id: String) {
-        TwitterAPI.postForTask(taskName: "Delete", tweetID: id) { (success, error) in
+        TwitterAPI.postForTask(taskName: OptionName.delete.rawValue, tweetID: id) { (success, error) in
             if success {
                 self.displayAlert(title: "Successful", with: "Tweet permanently deleted.")
             } else {
