@@ -38,6 +38,8 @@ class SearchViewController: UIViewController {
             return (self.tabBarController!.viewControllers![0] as! HomeViewController).user
         }
     }
+    // activityIndicator can only be initiated as lazy, since it requires view to be loaded.
+    lazy var activityIndicator = createActivityIndicatorView()
     
     // MARK: Outlets
     @IBOutlet weak var tableView: UITableView!
@@ -78,6 +80,8 @@ class SearchViewController: UIViewController {
                 let cell = tableView.cellForRow(at: indexPath) as! SearchCell
                 searchParameters[cell.searchTypeTextField.text!] = cell.searchKeywordTextField.text
             }
+            activityIndicator.startAnimating()
+            navigationController?.view.isUserInteractionEnabled = false
             TwitterAPI.get(searchParameters: searchParameters, completion: handleSearchResults(results:error:))
         } else {
             displayAlert(title: "Search Type Error", with: "Please select a valid type from the list.")
@@ -99,8 +103,12 @@ class SearchViewController: UIViewController {
     }
     
     func handleSearchResults(results: [Tweet], error: Error?) {
+        DispatchQueue.main.async {
+            self.activityIndicator.stopAnimating()
+            self.navigationController?.view.isUserInteractionEnabled = true
+        }
         guard error == nil else {
-            print(error!)
+            displayAlert(title: "Search Error", with: error?.localizedDescription ?? "Something went wrong during the search")
             return
         }
         print(results)
